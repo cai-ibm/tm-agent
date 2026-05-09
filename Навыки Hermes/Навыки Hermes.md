@@ -2,38 +2,38 @@
 
 Список навыков, установленных у агента.
 
-- Installed Skills
-- ┏━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
-- ┃ Name                 ┃ Category             ┃ Source  ┃ Trust   ┃ Status  ┃
-- ┡━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━┩
-- │ dogfood              │                      │ builtin │ builtin │ enabled │
-- │ yuanbao              │                      │ builtin │ builtin │ enabled │
-- │ autonomous-ai-agents │ autonomous-ai-agents │ local   │ local   │ enabled │
-- │ creative             │ creative             │ local   │ local   │ enabled │
-- │ jupyter-live-kernel  │ data-science         │ builtin │ builtin │ enabled │
-- │ devops               │ devops               │ local   │ local   │ enabled │
-- │ messaging-gateway    │ devops               │ local   │ local   │ enabled │
-- │ tmcell-balance       │ devops               │ local   │ local   │ enabled │
-- │ himalaya             │ email                │ builtin │ builtin │ enabled │
-- │ gaming               │ gaming               │ local   │ local   │ enabled │
-- │ github               │ github               │ local   │ local   │ enabled │
-- │ native-mcp           │ mcp                  │ builtin │ builtin │ enabled │
-- │ media                │ media                │ local   │ local   │ enabled │
-- │ dspy                 │ mlops                │ builtin │ builtin │ enabled │
-- │ fine-tuning          │ mlops                │ local   │ local   │ enabled │
-- │ ml-experimentation   │ mlops                │ local   │ local   │ enabled │
-- │ model-serving        │ mlops                │ local   │ local   │ enabled │
-- │ model-tools          │ mlops                │ local   │ local   │ enabled │
-- │ obsidian             │ note-taking          │ builtin │ builtin │ enabled │
-- │ productivity         │ productivity         │ local   │ local   │ enabled │
-- │ godmode              │ red-teaming          │ builtin │ builtin │ enabled │
-- │ research             │ research             │ local   │ local   │ enabled │
-- │ openhue              │ smart-home           │ builtin │ builtin │ enabled │
-- │ xurl                 │ social-media         │ builtin │ builtin │ enabled │
-- │ software-development │ software-development │ local   │ local   │ enabled │
-- └──────────────────────┴──────────────────────┴─────────┴─────────┴─────────┘
-- 0 hub-installed, 10 builtin, 15 local — 25 enabled, 0 disabled
+## Доступные навыки
 
+- **dogfood** — Exploratory QA of web apps: find bugs, evidence, reports.
+- **yuanbao** — Yuanbao (元宝) groups: @mention users, query info/members.
+- **autonomous-ai-agents** — Delegate coding tasks to autonomous AI agents: Claude Code, ACP workers.
+- **creative** — Creative tools and techniques: ASCII art, diagrams, comics.
+- **jupyter-live-kernel** — Iterative Python via live Jupyter kernel.
+- **devops** — DevOps utilities: SMB share management and webhook subscriptions.
+- **messaging-gateway** — Gateway management for messaging platforms.
+- **tmcell-balance** — Проверка баланса и остатка интернета на TMCELL (Туркменистан). → [[TMCELL Balance]]
+- **himalaya** — Himalaya CLI: IMAP/SMTP email from terminal.
+- **gaming** — Gaming tools: Host modded Minecraft servers and play Pokemon.
+- **github** — Complete GitHub management: auth, repos, PRs, issues, code review, CI/CD.
+- **native-mcp** — MCP client: connect servers, register tools (stdio/HTTP).
+- **media** — Media tools: GIF search, music generation, audio visualization.
+- **dspy** — DSPy: declarative LM programs, auto-optimize prompts, RAG.
+- **fine-tuning** — LLM fine-tuning: Axolotl, TRL.
+- **ml-experimentation** — ML experimentation: Weights & Biases, lm-eval.
+- **model-serving** — LLM serving: vLLM, llama.cpp, OBLITE.
+- **model-tools** — HuggingFace Hub, SAM.
+- **obsidian** — Read, search, and create notes in the Obsidian vault.
+- **productivity** — Airtable, Google Workspace, Linear, Notion.
+- **godmode** — Jailbreak LLMs: Parseltongue, GODMODE, ULTRAPLINIAN.
+- **research** — arXiv, blog monitoring, LLM benchmarks.
+- **openhue** — Control Philips Hue lights, scenes, rooms.
+- **xurl** — X/Twitter via xurl CLI: post, search, DM, media.
+- **software-development** — Debugging, TDD, code review.
+
+## Структура заметок
+
+Каждый навык может иметь отдельную заметку с подробным описанием — ссылка `[[Название]]` ведёт на неё.
 
 ---
-*Создано автоматически Hermes Agent. Обновляется при добавлении новых навыков.*
+
+*Создано Hermes Agent. Обновляется при добавлении новых навыков.*
