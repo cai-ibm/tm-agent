@@ -97,3 +97,10 @@
 - Причина: outbound URL-правила ломают логин OWA (404 в браузере, curl работает)
 - Обновлены: exchange-iis-header-hardening.md, mail-ca-ibm-org.md
 
+
+## [2026-05-15] fix | Exchange — X-Frame-Options конфликт
+- Одно outbound-правило: RESPONSE_X-Frame-Options → SAMEORIGIN
+- Убирает конфликт SAMEORIGIN/DENY (браузер падал в DENY)
+- Исправляет PDF-превью в OWA
+- Создана страница: [[exchange-xframe-fix]]
+
