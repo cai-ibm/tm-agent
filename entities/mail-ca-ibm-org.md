@@ -30,6 +30,20 @@ confidence: high
 | **DAG** | Отсутствует — одиночный сервер |
 | **IIS** | Exchange Back End на портах 81/444 |
 
+## Проксирование через NPM
+
+С 15.05.2026 Exchange размещён за [[nginx-pm-192-168-2-31]] (Nginx Proxy Manager):
+
+| Параметр | Значение |
+|----------|----------|
+| **Proxy Host ID** | 2 |
+| **Домены** | mail.ca-ibm.org, autodiscover.ca-ibm.org, webmail.ca-ibm.org |
+| **Forward** | https://192.168.2.50:443 |
+| **SSL** | Let's Encrypt (NPM) |
+| **HSTS** | Включён |
+| **WebSocket** | Включён |
+| **Advanced config** | Таймауты 600s, буферизация off, ssl_verify off |
+
 ## Подключение и управление
 
 ### WinRM

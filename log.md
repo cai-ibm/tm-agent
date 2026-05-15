@@ -37,3 +37,11 @@
 - Создана страница: [[techbau-org]]
 - Обновлён [[nginx-pm-192-168-2-31]]: добавлена таблица проксируемых хостов
 - Обновлён index.md: 5 → 6 страниц
+
+## [2026-05-15] create | Exchange за NPM (L7 proxy)
+- Proxy host id=2: mail.ca-ibm.org, autodiscover.ca-ibm.org, webmail.ca-ibm.org → 192.168.2.50:443
+- Advanced config: таймауты 600s, буферизация off, ssl_verify off, HSTS, WebSocket
+- Let's Encrypt сертификат на все 3 домена
+- Проверено: OWA 302, Autodiscover 401 (штатно) — все домены работают
+- Обновлён [[nginx-pm-192-168-2-31]]: +Exchange в таблице прокси-хостов
+- Обновлён [[mail-ca-ibm-org]]: секция «Проксирование через NPM»
