@@ -110,7 +110,63 @@ HKLM\SYSTEM\CurrentControlSet\Services\HTTP\Parameters
 **Решение**: оставлено как есть. Пустых значений достаточно — 
 ни версия IIS, ни имя сервера, ни билд Exchange не утекают.
 
+## Скрытие версии Exchange из URL (15.05.2026)
+
+OWA-страница логина содержит пути вида `/owa/auth/15.2.1748/themes/...` — 
+трёхчастный билд раскрывает версию CU.
+
+### Outbound rule — вырезать версию из HTML
+
+Работает только для text/html-ответов (precondition `IsHTML`),
+Regex: `(owa/auth)/15\\.2\\.\\d+(/.*)` → `{R:1}{R:2}`.
+
+```powershell
+# Precondition
+Add-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' `
+    -filter "system.webServer/rewrite/outboundRules/preConditions" -name "." -value @{
+        name='IsHTML'
+    }
+Add-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' `
+    -filter "system.webServer/rewrite/outboundRules/preConditions/preCondition[@name='IsHTML']" `
+    -name "." -value @{input='{RESPONSE_CONTENT_TYPE}'; pattern='^text/html'}
+
+# Outbound rule
+Add-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' `
+    -filter "system.webServer/rewrite/outboundRules" -name "." -value @{
+        name='Strip Exchange Version from URLs';
+        preCondition='IsHTML';
+        patternSyntax='ECMAScript';
+        match=@{filterByTags='None'; pattern='(owa/auth)/15\\.2\\.\\d+(/.*)'};
+        action=@{type='Rewrite'; value='{R:1}{R:2}'}
+    }
+```
+
+### Inbound rule — пробросить запросы без версии к реальным файлам
+
+Браузер получает очищенный HTML и запрашивает `/owa/auth/themes/...`.
+Inbound-правило перенаправляет эти запросы к реальным версионированным путям.
+
+```powershell
+Add-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' `
+    -filter "system.webServer/rewrite/rules" -name "." -value @{
+        name='Map Exchange OWA Themes (hide version)';
+        patternSyntax='ECMAScript';
+        stopProcessing='false';
+        match=@{url='^owa/auth/themes/(.*)'};
+        action=@{type='Rewrite'; url='owa/auth/15.2.1748/themes/{R:1}'; appendQueryString='false'}
+    }
+```
+
+### Результат
+
+```
+ДО:  /owa/auth/15.2.1748/themes/resources/favicon.ico
+ПОСЛЕ: /owa/auth/themes/resources/favicon.ico
+```
+
+Inbound-проверка: `GET /owa/auth/themes/resources/favicon.ico` → HTTP 200, image/x-icon ✅
+
 ## Связанные страницы
 
+- [[mail-ca-ibm-org]] — Exchange Server 2019, MAIL-SRV1
 - [[server-94-130-51-161]] — Hetzner-сервер с nginx/n8n/OnlyOffice
-- [[stargate-ca-ibm-org]] — Nextcloud на этом же Exchange-сервере?

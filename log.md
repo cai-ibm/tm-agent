@@ -75,3 +75,10 @@
 - X-Powered-By: убран (никогда не присутствовал, путаница с X-AspNet-Version)
 - Добавлена ссылка на [[exchange-iis-header-hardening]]
 
+
+## [2026-05-15] update | Exchange — скрытие версии в URL
+- Outbound rule: вырезает 15.2.1748/ из HTML (precondition IsHTML)
+- Inbound rule: пробрасывает /owa/auth/themes/ → /owa/auth/15.2.1748/themes/
+- Версионированные пути больше не видны в исходном коде страницы
+- Обновлены: exchange-iis-header-hardening.md, mail-ca-ibm-org.md
+
