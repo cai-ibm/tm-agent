@@ -2,7 +2,7 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-Обновлено: 2026-05-15 | Всего страниц: 6
+Обновлено: 2026-05-15 | Всего страниц: 7
 
 ## Entities
 
@@ -13,6 +13,8 @@
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3 object storage, OnlyOffice интеграция
 - [[techbau-org]] — WordPress-сайт на 192.168.2.39, проксируется через NPM
 ## Concepts
+
+- [[exchange-iis-header-hardening]] — Скрытие заголовков Exchange/IIS (Server, X-FEServer, X-OWA-Version, X-AspNet-Version) через URL Rewrite outbound rules
 
 ## Comparisons
 

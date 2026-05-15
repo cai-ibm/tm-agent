@@ -58,3 +58,11 @@
 - Proxy host id=4, Let's Encrypt SSL
 - HTTPS работает (HTTP 200)
 - Создана страница: [[eu-sg-ca-ibm-org]]
+
+## [2026-05-15] update | Exchange IIS header hardening
+- Установлены outbound rewrite rules через IIS URL Rewrite Module на MAIL-SRV1
+- Скрыты 4 заголовка: Server, X-FEServer, X-AspNet-Version, X-OWA-Version
+- Значения обнулены (пустые строки), информация не утекает
+- Доступ через WinRM (CAI\hermes, порт 5985)
+- Server header полностью не удалён (HTTP.sys, требует реестр + перезапуск службы)
+- Создана страница: [[exchange-iis-header-hardening]]
