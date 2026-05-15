@@ -80,13 +80,13 @@ NPM обслуживает только techbau.org.
 ### 🟠 ВЫСОКИЕ / СРЕДНИЕ
 
 5. **CSP минимальный** — только `script-src-attr 'none'`
-6. **Autodiscover с Basic auth**
+6. **Disclosure-заголовки:** `X-FEServer: MAIL-SRV1`, `X-AspNet-Version: 4.0.30319`, `X-OWA-Version: 15.2.1748.36`, `Server: Microsoft-IIS/10.0`
+7. **Версия Exchange в URL:** `/owa/auth/15.2.1748/`
+8. **Autodiscover с Basic auth**
 
-### ✅ ИСПРАВЛЕНО (15.05.2026)
+### ⚠️ ПОПЫТКА ИСПРАВЛЕНИЯ (ОТКАТ 15.05.2026)
 
-- **Disclosure-заголовки скрыты через IIS URL Rewrite:** `X-FEServer`, `X-OWA-Version`, `X-AspNet-Version`, `Server` — значения обнулены (пустые строки).
-- **Версия Exchange в URL скрыта:** outbound-правило вырезает `15.2.1748/` из HTML (только для text/html), inbound-правило пробрасывает запросы без версии к реальным файлам.
-  Подробно: [[exchange-iis-header-hardening]]
+Попытка скрыть заголовки и версию в URL через IIS URL Rewrite откачена — outbound-правила ломают логин OWA (404 после ввода УЗ). Документировано в [[exchange-iis-header-hardening]].
 
 ### ✅ ПОЛОЖИТЕЛЬНЫЕ
 

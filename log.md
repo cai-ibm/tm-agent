@@ -88,3 +88,12 @@
 - Новый: (owa/auth)/15\.2\.\d+(/themes/.*) — только ресурсные пути, JS-переменные не трогает
 - 15.2.1748: 0 вхождений в HTML, логин должен работать
 
+
+## [2026-05-15] rollback | Exchange IIS Rewrite — откат всех изменений
+- Удалены все outbound правила (header + URL stripping)
+- Удалены все inbound правила
+- Очищены allowed server variables
+- Precondition IsHTML удалён
+- Причина: outbound URL-правила ломают логин OWA (404 в браузере, curl работает)
+- Обновлены: exchange-iis-header-hardening.md, mail-ca-ibm-org.md
+
