@@ -104,3 +104,9 @@
 - Исправляет PDF-превью в OWA
 - Создана страница: [[exchange-xframe-fix]]
 
+
+## [2026-05-15] memory-offload | Exchange — выгрузка деталей в Obsidian
+- Создана страница: [[agent-memory-exchange]]
+- 3 записи agent memory заменены на 1 короткий указатель
+- Память: 95% → 70%
+

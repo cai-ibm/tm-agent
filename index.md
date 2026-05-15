@@ -2,11 +2,12 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-Обновлено: 2026-05-15 | Всего страниц: 7
+Обновлено: 2026-05-15 | Всего страниц: 8
 
 ## Entities
 
-- [[mail-ca-ibm-org]] — Exchange Server 2019 CU13 (MAIL-SRV1), прямой NAT
+- [[agent-memory-exchange]] — Выгрузка из памяти агента: Exchange MAIL-SRV1, состояние, IIS Rewrite, проблемы
+- [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), прямой NAT
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (Docker), только techbau.org
 - [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04), nginx reverse proxy, n8n, OnlyOffice DS
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
