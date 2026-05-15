@@ -45,3 +45,9 @@
 - Проверено: OWA 302, Autodiscover 401 (штатно) — все домены работают
 - Обновлён [[nginx-pm-192-168-2-31]]: +Exchange в таблице прокси-хостов
 - Обновлён [[mail-ca-ibm-org]]: секция «Проксирование через NPM»
+
+## [2026-05-15] create | eu-sg.ca-ibm.org за NPM
+- ALT-N SecurityGateway 11.0.3 (192.168.2.36:4443)
+- Proxy host id=4, Let's Encrypt SSL
+- HTTPS работает (HTTP 200)
+- Создана страница: [[eu-sg-ca-ibm-org]]

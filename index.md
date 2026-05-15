@@ -12,6 +12,7 @@
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526, скрипт sendmail.py
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3 object storage, OnlyOffice интеграция
 - [[techbau-org]] — WordPress-сайт на 192.168.2.39, проксируется через NPM
+- [[eu-sg-ca-ibm-org]] — SecurityGateway 11.0.3 (192.168.2.36), почтовый шлюз
 
 ## Concepts
 
