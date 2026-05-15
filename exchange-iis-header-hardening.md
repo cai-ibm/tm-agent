@@ -118,7 +118,9 @@ OWA-страница логина содержит пути вида `/owa/auth/
 ### Outbound rule — вырезать версию из HTML
 
 Работает только для text/html-ответов (precondition `IsHTML`),
-Regex: `(owa/auth)/15\\.2\\.\\d+(/.*)` → `{R:1}{R:2}`.
+Regex: `(owa/auth)/15\\.2\\.\\d+(/themes/.*)` → `{R:1}{R:2}`.
+Важно: матчится только `/themes/` — не задевает JS-переменные ASP.NET (a_sLgn, a_sUrl)
+которые содержат полные пути с версией и ломали редирект после логина.
 
 ```powershell
 # Precondition
@@ -136,7 +138,7 @@ Add-WebConfigurationProperty -pspath 'MACHINE/WEBROOT/APPHOST' `
         name='Strip Exchange Version from URLs';
         preCondition='IsHTML';
         patternSyntax='ECMAScript';
-        match=@{filterByTags='None'; pattern='(owa/auth)/15\\.2\\.\\d+(/.*)'};
+        match=@{filterByTags='None';        pattern='(owa/auth)/15\\.2\\.\\d+(/themes/.*)'};
         action=@{type='Rewrite'; value='{R:1}{R:2}'}
     }
 ```
