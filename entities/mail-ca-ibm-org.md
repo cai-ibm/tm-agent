@@ -39,7 +39,7 @@ confidence: high
 - **Ограничение:** нет прав **Organization Management** — Exchange-командлеты (`Get-ExchangeServer`, `Get-MailboxDatabase`) возвращают Access Denied. Для полноценного администрирования нужны повышенные права.
 
 ### SMTP Relay
-- **Адрес:** 192.168.2.50:2526
+- **Внутренний адрес:** 192.168.2.50:2526
 - **Аутентификация:** анонимная
 - **Banner:** `Microsoft ESMTP MAIL Service`
 - **Отправка:** скрипт `/home/cai/sendmail.py`, отправитель по умолчанию `noreply@ca-ibm.org`
@@ -47,17 +47,18 @@ confidence: high
 
 ## Открытые порты
 
-| Порт | Сервис |
-|------|--------|
-| 25 | SMTP |
-| 80 | HTTP (редирект на HTTPS) |
-| 143 | IMAP |
-| 443 | HTTPS (OWA, ECP) |
-| 465 | SMTPS |
-| 587 | SMTP Submission |
-| 993 | IMAPS |
-| 3389 | RDP — **открыт наружу** |
-| 5985 | WinRM HTTP |
+| Порт | Сервис | Статус |
+|------|--------|--------|
+| 25 | SMTP | Открыт (421 Service not available — anti-spam) |
+| 80 | HTTP | Открыт (403 Forbidden / редирект) |
+| 143 | IMAP | Открыт |
+| 443 | HTTPS (OWA, ECP) | Открыт |
+| 465 | SMTPS | Открыт |
+| 587 | SMTP Submission | Открыт |
+| 993 | IMAPS | Открыт |
+| 2526 | SMTP Relay (анонимный) | 🔴 **Открыт (новое с 15.05!)** |
+| 3389 | RDP | Открыт |
+| 5985 | WinRM HTTP | Открыт |
 
 ## Сервисы Exchange
 
@@ -70,19 +71,36 @@ confidence: high
 
 Остановлен: **POP3**
 
-## Уязвимости (аудит 09.05.2026)
+## Уязвимости
 
-### Критические
-1. **CU13 устарел** — несколько известных CVE (ProxyShell, ProxyLogon). Текущая версия на несколько CU позади актуальной (CU15/CU16 на момент аудита)
-2. **RDP (3389) открыт наружу** — небезопасно, рекомендуется VPN или RD Gateway
-3. **WinRM HTTP (5985)** — без шифрования, NTLM-аутентификация
+### Последний аудит: 15.05.2026
 
-### Высокие / Средние
-4. **Нет HSTS** — отсутствует Strict-Transport-Security header
-5. **Нет X-Frame-Options** — возможен clickjacking OWA
-6. **Нет CSP** — Content Security Policy не задан
-7. **Version disclosure** — `x-owa-version: 15.2.1748.36`, `x-powered-by: ASP.NET`
-8. **`/api/v2.0/` доступен без аутентификации** — отвечает 401 с NTLM/Negotiate, но сам endpoint достижим без авторизации
+#### 🔴 КРИТИЧЕСКИЕ
+
+1. **Порт 2526 (SMTP relay) открыт наружу** — NEW с 15.05.2026!
+   Анонимный SMTP-релей `Microsoft ESMTP MAIL Service` доступен из интернета. Любой может отправлять письма от имени `@ca-ibm.org` без аутентификации. При прошлом аудите 09.05 этот порт был закрыт снаружи.
+   **Рекомендация:** немедленно закрыть порт 2526 на файрволе.
+
+2. **CU13 устарел** — несколько известных CVE (ProxyShell, ProxyLogon). Текущая версия на несколько CU позади актуальной (CU15/CU16 на момент аудита)
+
+3. **RDP (3389) открыт наружу** — небезопасно, рекомендуется VPN или RD Gateway
+
+4. **WinRM HTTP (5985)** — без шифрования, NTLM-аутентификация
+
+#### 🟠 ВЫСОКИЕ / СРЕДНИЕ
+
+5. **Нет HSTS** — отсутствует Strict-Transport-Security header
+6. **Нет X-Frame-Options** — возможен clickjacking OWA
+7. **CSP минимальный** — `script-src-attr 'none'` (есть в OWA, отсутствует в ECP)
+8. **Version disclosure** — `x-owa-version: 15.2.1748.36`, `x-powered-by: ASP.NET`, `x-aspnet-version: 4.0.30319`, `x-feserver: MAIL-SRV1`
+9. **`/api/v2.0/` доступен без аутентификации** — отвечает 401 с NTLM/Negotiate, но сам endpoint достижим без авторизации
+10. **Autodiscover с Basic auth** — `www-authenticate: Basic realm="mail.ca-ibm.org"`
+
+#### ✅ ПОЛОЖИТЕЛЬНЫЕ
+
+- TLS 1.0 и 1.1 отключены
+- Сертификат Let's Encrypt R13 (wildcard `*.ca-ibm.org`, до 14.06.2026)
+- SMTP 25 защищён anti-spam: `421 4.3.2 Service not available`
 
 ## Оценка рисков апгрейда CU13 → CU15/16
 
@@ -109,6 +127,6 @@ confidence: high
 
 ## История изменений
 
-- **2026-05-15** — Страница создана при инициализации LLM Wiki (источник: agent-knowledge-2026-05-15)
-- **09.05.2026** — Аудит безопасности (port scan, headers, TLS)
+- **15.05.2026** — Повторный аудит: обнаружен открытый порт 2526 (SMTP relay). CSP появился (минимальный). Без других изменений.
+- **09.05.2026** — Первичный аудит безопасности (port scan, headers, TLS)
 - **09.05.2026** — Оценка рисков апгрейда CU (WinRM + pywinrm)
