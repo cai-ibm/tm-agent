@@ -66,3 +66,12 @@
 - Доступ через WinRM (CAI\hermes, порт 5985)
 - Server header полностью не удалён (HTTP.sys, требует реестр + перезапуск службы)
 - Создана страница: [[exchange-iis-header-hardening]]
+
+## [2026-05-15] update | mail.ca-ibm.org — исправление неточностей
+- CU13 → CU15 (build 15.2.1748.36, Aug25SU)
+- WinRM: cai\sr → cai\hermes (рабочая учётка)
+- HSTS и X-Frame-Options: "отсутствуют" → присутствуют
+- Disclosure-заголовки: "не исправлены" → исправлены через URL Rewrite
+- X-Powered-By: убран (никогда не присутствовал, путаница с X-AspNet-Version)
+- Добавлена ссылка на [[exchange-iis-header-hardening]]
+
