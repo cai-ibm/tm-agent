@@ -124,6 +124,7 @@ confidence: high
 - [[smtp-relay-ca-ibm]] — SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud, корпоративное облако
 - [[server-94-130-51-161]] — Hetzner, nginx reverse proxy
+- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (новый), планируется перенос за него
 
 ## История изменений
 
