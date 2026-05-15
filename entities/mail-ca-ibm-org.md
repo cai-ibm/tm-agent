@@ -42,7 +42,7 @@ confidence: high
 | **SSL** | Let's Encrypt (NPM) |
 | **HSTS** | Включён |
 | **WebSocket** | Включён |
-| **Advanced config** | Таймауты 600s, буферизация off, ssl_verify off |
+| **Advanced config** | Таймауты 600s, буферизация off, ssl_verify off, hide X-FEServer/X-Powered-By/X-AspNet-Version/X-OWA-Version |
 
 ## Подключение и управление
 
