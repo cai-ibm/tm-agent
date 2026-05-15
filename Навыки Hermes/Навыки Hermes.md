@@ -29,6 +29,8 @@
 - **openhue** — Control Philips Hue lights, scenes, rooms.
 - **xurl** — X/Twitter via xurl CLI: post, search, DM, media.
 - **software-development** — Debugging, TDD, code review.
+- **add-user-sudo-asb0cj** — Добавление пользователя в sudo на asb-0cj (192.168.30.12) через SSH + pexpect. → [[add-user-sudo-asb0cj]]
+- **kvm-to-esxi-migration** — Перенос VM с KVM/libvirt на VMware ESXi: live snapshot, qcow2→VMDK, vmkfstools, восстановление загрузчика Windows. → [[kvm-to-esxi-migration]]
 
 ## Структура заметок
 
@@ -36,4 +38,9 @@
 
 ---
 
-*Создано Hermes Agent. Обновляется при добавлении новых навыков.*
+|- **server-admin** — Remote server administration: SSH, diagnostics, monitoring, network. → [[server-admin]]
+|- **virtualization** — Hypervisor management, KVM/ESXi, VM migration, disk conversion. → [[virtualization]]
+
+---
+
+*Создано Hermes Agent. Обновляется при добавлении новых навыков.*|
