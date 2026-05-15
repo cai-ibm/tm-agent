@@ -30,19 +30,11 @@ confidence: high
 | **DAG** | Отсутствует — одиночный сервер |
 | **IIS** | Exchange Back End на портах 81/444 |
 
-## Проксирование через NPM
+## Схема доступа
 
-С 15.05.2026 Exchange размещён за [[nginx-pm-192-168-2-31]] (Nginx Proxy Manager):
-
-| Параметр | Значение |
-|----------|----------|
-| **Proxy Host ID** | 2 |
-| **Домены** | mail.ca-ibm.org, autodiscover.ca-ibm.org, webmail.ca-ibm.org |
-| **Forward** | https://192.168.2.50:443 |
-| **SSL** | Let's Encrypt (NPM) |
-| **HSTS** | Включён |
-| **WebSocket** | Включён |
-| **Advanced config** | Таймауты 600s, буферизация off, ssl_verify off, hide X-FEServer/X-Powered-By/X-AspNet-Version/X-OWA-Version |
+```
+Интернет → 94.130.51.188:443 → 192.168.2.50:443 (Exchange напрямую)
+```
 
 ## Подключение и управление
 
@@ -50,98 +42,70 @@ confidence: high
 - **Протокол:** NTLM, порт 5985
 - **Пользователь:** `cai\sr`
 - **Venv:** `~/.hermes/venvs/winrm` (pywinrm)
-- **Ограничение:** нет прав **Organization Management** — Exchange-командлеты (`Get-ExchangeServer`, `Get-MailboxDatabase`) возвращают Access Denied. Для полноценного администрирования нужны повышенные права.
+- **Ограничение:** нет прав **Organization Management** — Exchange-командлеты возвращают Access Denied
 
 ### SMTP Relay
 - **Внутренний адрес:** 192.168.2.50:2526
 - **Аутентификация:** анонимная
 - **Banner:** `Microsoft ESMTP MAIL Service`
-- **Отправка:** скрипт `/home/cai/sendmail.py`, отправитель по умолчанию `noreply@ca-ibm.org`
-- См. навык Hermes `send-email` для деталей SMTP-релея
+- **Отправка:** скрипт `/home/cai/sendmail.py`
 
 ## Открытые порты
 
 | Порт | Сервис | Статус |
 |------|--------|--------|
-| 25 | SMTP | Открыт (421 Service not available — anti-spam) |
-| 80 | HTTP | Открыт (403 Forbidden / редирект) |
+| 25 | SMTP | Открыт (421 — anti-spam) |
+| 80 | HTTP | Открыт (403 / редирект) |
 | 143 | IMAP | Открыт |
-| 443 | HTTPS (OWA, ECP) | Открыт |
+| 443 | HTTPS (OWA, ECP, EWS, Autodiscover...) | Открыт |
 | 465 | SMTPS | Открыт |
 | 587 | SMTP Submission | Открыт |
 | 993 | IMAPS | Открыт |
-| 2526 | SMTP Relay (анонимный) | 🔴 **Открыт (новое с 15.05!)** |
+| 2526 | SMTP Relay (анонимный) | 🔴 Открыт наружу (15.05) |
 | 3389 | RDP | Открыт |
 | 5985 | WinRM HTTP | Открыт |
 
-## Сервисы Exchange
+## Уязвимости (аудит 15.05.2026)
 
-Все основные сервисы запущены и работают:
-- **Transport** — транспортная служба
-- **IS** — Information Store (хранилище почтовых ящиков)
-- **MailboxAssistants**
-- **Replication**
-- **FastSearch**
+### 🔴 КРИТИЧЕСКИЕ
 
-Остановлен: **POP3**
+1. **Порт 2526 (SMTP relay) открыт наружу** — анонимная отправка от @ca-ibm.org
+2. **CU13 устарел** — известные CVE (ProxyShell, ProxyLogon)
+3. **RDP (3389) открыт наружу**
+4. **WinRM HTTP (5985)** — без шифрования
 
-## Уязвимости
+### 🟠 ВЫСОКИЕ / СРЕДНИЕ (требуют исправления на IIS)
 
-### Последний аудит: 15.05.2026
+5. **Нет HSTS** — Strict-Transport-Security
+6. **Нет X-Frame-Options**
+7. **CSP минимальный** — только `script-src-attr 'none'`
+8. **Disclosure-заголовки:** `X-FEServer: MAIL-SRV1`, `X-Powered-By: ASP.NET`, `X-AspNet-Version: 4.0.30319`, `X-OWA-Version: 15.2.1748.36`
+9. **Версия Exchange в URL:** `/owa/auth/15.2.1748/`
+10. **Autodiscover с Basic auth**
 
-#### 🔴 КРИТИЧЕСКИЕ
+### ✅ ПОЛОЖИТЕЛЬНЫЕ
 
-1. **Порт 2526 (SMTP relay) открыт наружу** — NEW с 15.05.2026!
-   Анонимный SMTP-релей `Microsoft ESMTP MAIL Service` доступен из интернета. Любой может отправлять письма от имени `@ca-ibm.org` без аутентификации. При прошлом аудите 09.05 этот порт был закрыт снаружи.
-   **Рекомендация:** немедленно закрыть порт 2526 на файрволе.
+- TLS 1.0/1.1 отключены
+- Сертификат Let's Encrypt R13 (wildcard *.ca-ibm.org, до 14.06.2026)
+- SMTP 25 защищён anti-spam
 
-2. **CU13 устарел** — несколько известных CVE (ProxyShell, ProxyLogon). Текущая версия на несколько CU позади актуальной (CU15/CU16 на момент аудита)
+## Исправление уязвимостей на IIS
 
-3. **RDP (3389) открыт наружу** — небезопасно, рекомендуется VPN или RD Gateway
+Для скрытия disclosure-заголовков и версии в URL — URL Rewrite на IIS. Для HSTS/X-Frame-Options/CSP — HTTP Response Headers.
 
-4. **WinRM HTTP (5985)** — без шифрования, NTLM-аутентификация
-
-#### 🟠 ВЫСОКИЕ / СРЕДНИЕ
-
-5. **Нет HSTS** — отсутствует Strict-Transport-Security header
-6. **Нет X-Frame-Options** — возможен clickjacking OWA
-7. **CSP минимальный** — `script-src-attr 'none'` (есть в OWA, отсутствует в ECP)
-8. **Version disclosure** — `x-owa-version: 15.2.1748.36`, `x-powered-by: ASP.NET`, `x-aspnet-version: 4.0.30319`, `x-feserver: MAIL-SRV1`
-9. **`/api/v2.0/` доступен без аутентификации** — отвечает 401 с NTLM/Negotiate, но сам endpoint достижим без авторизации
-10. **Autodiscover с Basic auth** — `www-authenticate: Basic realm="mail.ca-ibm.org"`
-
-#### ✅ ПОЛОЖИТЕЛЬНЫЕ
-
-- TLS 1.0 и 1.1 отключены
-- Сертификат Let's Encrypt R13 (wildcard `*.ca-ibm.org`, до 14.06.2026)
-- SMTP 25 защищён anti-spam: `421 4.3.2 Service not available`
-
-## Оценка рисков апгрейда CU13 → CU15/16
-
-| Риск | Описание | Критичность |
-|------|----------|-------------|
-| **Нет DAG** | Все почтовые ящики на одном сервере. Простой 1-3 часа | Критично |
-| **Мало места на C:** | CU требует 10-20 ГБ под распаковку + backup старых бинарников. 63 ГБ на грани | Высокая |
-| **Необратимая схема AD** | Схема Active Directory обновляется до установки бинарников. Сбой = без отката | Критично |
-| **Нет отката CU** | CU нельзя деинсталлировать. Восстановление только через снапшот VM | Критично |
-| **Сброс настроек** | Возможен сброс OWA/ECP web.config, virtual directories, certificate bindings | Средняя |
-
-### Рекомендации перед апгрейдом
-1. Сделать снапшот виртуальной машины
-2. Очистить/расширить диск C: (минимум 80 ГБ свободно)
-3. Запланировать maintenance window (1-3 часа)
-4. Получить права Organization Management для `cai\sr`
-5. Подготовить PowerShell-скрипт для восстановления настроек после CU
+См. навык `onlyoffice-troubleshooting` (раздел IIS hardening) или отдельную процедуру.
 
 ## Связанные сущности
 
 - [[smtp-relay-ca-ibm]] — SMTP-релей 192.168.2.50:2526
-- [[stargate-ca-ibm-org]] — Nextcloud, корпоративное облако
-- [[server-94-130-51-161]] — Hetzner, nginx reverse proxy
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (новый), планируется перенос за него
+- [[stargate-ca-ibm-org]] — Nextcloud
+- [[server-94-130-51-161]] — Hetzner, nginx
+- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (только для HTTP-сервисов)
 
 ## История изменений
 
-- **15.05.2026** — Повторный аудит: обнаружен открытый порт 2526 (SMTP relay). CSP появился (минимальный). Без других изменений.
-- **09.05.2026** — Первичный аудит безопасности (port scan, headers, TLS)
-- **09.05.2026** — Оценка рисков апгрейда CU (WinRM + pywinrm)
+- **15.05.2026 15:00** — Exchange убран из-за NPM (несовместимость NTLM). Прямой NAT 94.130.51.188:443 → 192.168.2.50. NPM оставлен только для techbau.org.
+- **15.05.2026 13:30** — Скрыты disclosure-заголовки и версия в URL через NPM (позже отменено)
+- **15.05.2026 12:00** — Exchange размещён за NPM: proxy host id=2, 3 домена, Let's Encrypt
+- **15.05.2026 11:00** — Повторный аудит: обнаружен порт 2526 (SMTP relay) открытым наружу
+- **09.05.2026** — Первичный аудит безопасности, оценка рисков апгрейда CU

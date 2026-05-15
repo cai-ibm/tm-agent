@@ -34,7 +34,14 @@
 - Создан proxy host в NPM: techbau.org → 192.168.2.39:80 (id=1)
 - WordPress на nginx/1.24.0. Прокси работает (HTTP 200).
 - ✅ NAT 94.130.51.188 настроен, сайт доступен снаружи
-- Создана страница: [[techbau-org]]
+- Создана страница: [[eu-sg-ca-ibm-org]]
+
+## [2026-05-15] refactor | Упрощение: Exchange и SG убраны из NPM
+- Exchange (id=7) и SecurityGateway (id=4) удалены из NPM — несовместимость NTLM с HTTP-прокси
+- Схема: Exchange и SG на прямом NAT, NPM только для techbau.org
+- Сертификаты Let's Encrypt для Exchange/SG удалены
+- Обновлены страницы: [[mail-ca-ibm-org]], [[nginx-pm-192-168-2-31]]
+- Удалена страница [[eu-sg-ca-ibm-org]] (SG на прямом доступе)
 - Обновлён [[nginx-pm-192-168-2-31]]: добавлена таблица проксируемых хостов
 - Обновлён index.md: 5 → 6 страниц
 
