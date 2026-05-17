@@ -103,9 +103,11 @@ NPM обслуживает только techbau.org.
 - [[server-94-130-51-161]] — Hetzner, nginx
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (только для HTTP-сервисов)
 - [[exchange-iis-header-hardening]] — Скрытие заголовков через URL Rewrite
+- [[exchange-extended-protection]] — Extended Protection (EPA)
 
 ## История изменений
 
+- **17.05.2026 10:52** — Включён Extended Protection (EPA) на всех виртуальных директориях: Autodiscover, PowerShell (Allow), server root (Allow). OWA/ECP/MAPI (Require), EWS/ActiveSync (Allow) — были ранее.
 - **15.05.2026 22:12** — Скрыты disclosure-заголовки через IIS URL Rewrite (Server, X-FEServer, X-AspNet-Version, X-OWA-Version). Обнаружено: CU15, build 15.2.1748.36, HSTS и X-Frame-Options уже присутствуют.
 - **15.05.2026 15:00** — Exchange убран из NPM (несовместимость NTLM). Прямой NAT 94.130.51.188:443 → 192.168.2.50. NPM оставлен только для techbau.org.
 - **15.05.2026 13:30** — Скрыты disclosure-заголовки и версия в URL через NPM (позже отменено — NTLM несовместимость)
