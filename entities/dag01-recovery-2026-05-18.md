@@ -1,8 +1,9 @@
 ---
 title: Восстановление DAG01 после потери кворума
 created: 2026-05-18
+updated: 2026-05-18
 type: entity
-tags: [exchange, dag, cluster, incident]
+tags: [exchange, dag, cluster, incident, recovery]
 sources: []
 ---
 
@@ -49,3 +50,8 @@ sources: []
 - Через несколько часов проверить DynamicWeight на mail-srv1 (должен стать 1)
 - Рассмотреть добавление File Share Witness для 2-узлового DAG (предотвращает split-brain)
 - Убедиться что heartbeat-сеть (192.168.40.0/24) стабильна между узлами
+
+## Связанные сущности
+
+- [[mail-ca-ibm-org]] — основной профиль Exchange
+- [[exchange-iis-headers]] — управление HTTP-заголовками

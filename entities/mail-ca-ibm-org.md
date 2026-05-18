@@ -1,16 +1,16 @@
 ---
 title: mail.ca-ibm.org (Exchange 2019)
 created: 2026-05-15
-updated: 2026-05-15
+updated: 2026-05-18
 type: entity
-tags: [server, exchange, service, security, vulnerability, audit, winrm, smtp, hardening]
+tags: [server, exchange, service, security, vulnerability, audit, winrm, smtp, hardening, dag]
 sources: [raw/memory/agent-knowledge-2026-05-15.md]
 confidence: high
 ---
 
 # mail.ca-ibm.org — Exchange Server 2019
 
-Почтовый сервер организации. Обслуживает домен `ca-ibm.org`. Развёрнут на Windows Server 2022 Standard, одиночный сервер без DAG.
+Почтовый сервер организации. Обслуживает домен `ca-ibm.org`. Развёрнут на Windows Server 2022 Standard, **узел DAG01** (2 узла: MAIL-SRV1 + MAIL-SRV2, Node Majority quorum).
 
 ## Основные параметры
 
@@ -27,7 +27,7 @@ confidence: high
 | **Диск C:** | 199 ГБ (свободно 63.6 ГБ / 32%) |
 | **Диск D:** | 200 ГБ (свободно 174.1 ГБ) |
 | **.NET** | 4.8.04161 |
-| **DAG** | Отсутствует — одиночный сервер |
+| **DAG** | DAG01, Node Majority quorum, 2 узла (MAIL-SRV1 192.168.2.50 + MAIL-SRV2 192.168.40.38) |
 | **IIS** | Exchange Back End на портах 81/444 |
 
 ## Схема доступа
@@ -86,7 +86,7 @@ NPM обслуживает только techbau.org.
 
 ### ⚠️ ПОПЫТКА ИСПРАВЛЕНИЯ (ОТКАТ 15.05.2026)
 
-Попытка скрыть заголовки и версию в URL через IIS URL Rewrite откачена — outbound-правила ломают логин OWA (404 после ввода УЗ). Документировано в [[exchange-iis-header-hardening]].
+Попытка скрыть заголовки и версию в URL через IIS URL Rewrite откачена — outbound-правила ломают логин OWA (404 после ввода УЗ). Документировано в [[exchange-iis-headers]].
 
 ### ✅ ПОЛОЖИТЕЛЬНЫЕ
 
@@ -102,12 +102,15 @@ NPM обслуживает только techbau.org.
 - [[stargate-ca-ibm-org]] — Nextcloud
 - [[server-94-130-51-161]] — Hetzner, nginx
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (только для HTTP-сервисов)
-- [[exchange-iis-header-hardening]] — Скрытие заголовков через URL Rewrite
+- [[exchange-iis-headers]] — Управление HTTP-заголовками через IIS URL Rewrite
 - [[exchange-extended-protection]] — Extended Protection (EPA)
+- [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума (18.05.2026)
 
 ## История изменений
 
-- **17.05.2026 10:52** — Включён Extended Protection (EPA) на всех виртуальных директориях: Autodiscover, PowerShell (Allow), server root (Allow). OWA/ECP/MAPI (Require), EWS/ActiveSync (Allow) — были ранее.
+- **18.05.2026 08:43** — Инцидент: кластер DAG01 потерял кворум. Восстановлен через force quorum на mail-srv2. Подробнее: [[dag01-recovery-2026-05-18]]
+- **17.05.2026 10:52** — Включён Extended Protection (EPA) на всех виртуальных директориях: Autodiscover, PowerShell (Allow), server root (Allow). OWA/ECP/MAPI (Require), EWS/ActiveSync (Allow) — были ранее. Подробнее: [[exchange-extended-protection]]
+- **16.05.2026** — Успешная подмена disclosure-заголовков: X-FEServer → MAIL.CA-IBM.ORG, X-OWA-Version → 15.02.2562.037, X-Powered-By и X-AspNet-Version → пусто. Подробнее: [[exchange-iis-headers]]
 - **15.05.2026 22:12** — Скрыты disclosure-заголовки через IIS URL Rewrite (Server, X-FEServer, X-AspNet-Version, X-OWA-Version). Обнаружено: CU15, build 15.2.1748.36, HSTS и X-Frame-Options уже присутствуют.
 - **15.05.2026 15:00** — Exchange убран из NPM (несовместимость NTLM). Прямой NAT 94.130.51.188:443 → 192.168.2.50. NPM оставлен только для techbau.org.
 - **15.05.2026 13:30** — Скрыты disclosure-заголовки и версия в URL через NPM (позже отменено — NTLM несовместимость)

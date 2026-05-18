@@ -2,20 +2,22 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-Обновлено: 2026-05-15 | Всего страниц: 8
+Обновлено: 2026-05-18 | Всего страниц: 10
 
 ## Entities
 
-- [[agent-memory-exchange]] — Выгрузка из памяти агента: Exchange MAIL-SRV1, состояние, IIS Rewrite, проблемы
-- [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), прямой NAT
+- [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума (18.05.2026)
+- [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), DAG01, прямой NAT, hardening
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (Docker), только techbau.org
 - [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04), nginx reverse proxy, n8n, OnlyOffice DS
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3 object storage, OnlyOffice интеграция
 - [[techbau-org]] — WordPress-сайт на 192.168.2.39, проксируется через NPM
+
 ## Concepts
 
-- [[exchange-iis-header-hardening]] — Скрытие заголовков Exchange/IIS (Server, X-FEServer, X-OWA-Version, X-AspNet-Version) через URL Rewrite outbound rules
+- [[exchange-extended-protection]] — Extended Protection (EPA) на Exchange: настройка, текущее состояние, мониторинг
+- [[exchange-iis-headers]] — Управление HTTP-заголовками Exchange через IIS URL Rewrite: X-Frame-Options fix, скрытие disclosure-заголовков, попытка отката, успешная подмена
 
 ## Comparisons
 

@@ -81,4 +81,4 @@ Set-WebConfigurationProperty -PSPath 'MACHINE/WEBROOT/APPHOST' `
 ## Связанные сущности
 
 - [[mail-ca-ibm-org]] — Exchange Server
-- [[exchange-iis-header-rewrite-2026-05-16]] — предыдущие изменения IIS
+- [[exchange-iis-headers]] — управление HTTP-заголовками (предыдущие изменения IIS)
