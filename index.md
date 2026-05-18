@@ -6,8 +6,7 @@
 
 ## Entities
 
-- [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума (18.05.2026)
-- [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), DAG01, прямой NAT, hardening
+- [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (Docker), только techbau.org
 - [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04), nginx reverse proxy, n8n, OnlyOffice DS
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
