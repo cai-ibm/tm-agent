@@ -10,7 +10,7 @@ confidence: high
 
 # mail.ca-ibm.org — Exchange Server 2019
 
-Почтовый сервер организации. Обслуживает домен `ca-ibm.org`. Развёрнут на Windows Server 2022 Standard, **узел DAG01** (2 узла: MAIL-SRV1 + MAIL-SRV2, Node Majority quorum).
+Почтовый сервер организации. Обслуживает домен `ca-ibm.org`. Развёрнут на Windows Server 2022 Standard, **одиночный сервер без DAG** (DAG01 удалён 18.05.2026).
 
 ## Основные параметры
 
@@ -27,7 +27,7 @@ confidence: high
 | **Диск C:** | 199 ГБ (свободно 63.6 ГБ / 32%) |
 | **Диск D:** | 200 ГБ (свободно 174.1 ГБ) |
 | **.NET** | 4.8.04161 |
-| **DAG** | DAG01, Node Majority quorum, 2 узла (MAIL-SRV1 192.168.2.50 + MAIL-SRV2 192.168.40.38) |
+| **DAG** | Отсутствует (DAG01 удалён 18.05.2026) |
 | **IIS** | Exchange Back End на портах 81/444 |
 
 ## Схема доступа
@@ -104,11 +104,10 @@ NPM обслуживает только techbau.org.
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (только для HTTP-сервисов)
 - [[exchange-iis-headers]] — Управление HTTP-заголовками через IIS URL Rewrite
 - [[exchange-extended-protection]] — Extended Protection (EPA)
-- [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума (18.05.2026)
 
 ## История изменений
 
-- **18.05.2026 08:43** — Инцидент: кластер DAG01 потерял кворум. Восстановлен через force quorum на mail-srv2. Подробнее: [[dag01-recovery-2026-05-18]]
+- **18.05.2026 19:35** — DAG01 удалён. База переведена на standalone (Master=MAIL-SRV1). MAIL-SRV2 остаётся в Exchange. Кластер остановлен и отключён.
 - **17.05.2026 10:52** — Включён Extended Protection (EPA) на всех виртуальных директориях: Autodiscover, PowerShell (Allow), server root (Allow). OWA/ECP/MAPI (Require), EWS/ActiveSync (Allow) — были ранее. Подробнее: [[exchange-extended-protection]]
 - **16.05.2026** — Успешная подмена disclosure-заголовков: X-FEServer → MAIL.CA-IBM.ORG, X-OWA-Version → 15.02.2562.037, X-Powered-By и X-AspNet-Version → пусто. Подробнее: [[exchange-iis-headers]]
 - **15.05.2026 22:12** — Скрыты disclosure-заголовки через IIS URL Rewrite (Server, X-FEServer, X-AspNet-Version, X-OWA-Version). Обнаружено: CU15, build 15.2.1748.36, HSTS и X-Frame-Options уже присутствуют.
