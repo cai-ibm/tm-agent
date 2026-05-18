@@ -110,3 +110,12 @@
 - 3 записи agent memory заменены на 1 короткий указатель
 - Память: 95% → 70%
 
+## [2026-05-18] consolidate | Exchange — объединение заметок
+- Удалено: agent-memory-exchange.md (устаревший дамп памяти)
+- Объединены в concepts/exchange-iis-headers.md: exchange-iis-header-hardening.md + exchange-xframe-fix.md + entities/exchange-iis-header-rewrite-2026-05-16.md
+- Перенесено: entities/exchange-extended-protection.md → concepts/exchange-extended-protection.md
+- Обновлено: entities/mail-ca-ibm-org.md (DAG, EPA, перекрёстные ссылки), entities/dag01-recovery-2026-05-18.md (связанные сущности)
+- Обновлено: index.md (10 страниц, убраны удалённые, добавлены dag01-recovery, exchange-iis-headers)
+- Итого: 7 страниц → 4
+- Commit: f03673f, push → origin/main
+
