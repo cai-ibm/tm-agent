@@ -9,7 +9,7 @@ confidence: high
 
 # Claude Code Container
 
-Отдельный Docker-контейнер с Claude Code CLI (Anthropic), запущенный на хосте `94.130.51.161` рядом с Hermes Agent.
+Отдельный Docker-контейнер с Claude Code CLI (Anthropic), запущенный на хосте `hermes-eu` (192.168.2.34 / внешний 94.130.51.188) рядом с Hermes Agent.
 
 ## Основные параметры
 

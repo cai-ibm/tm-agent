@@ -6,7 +6,7 @@
 > При превышении 500 записей — ротация: переименовать в log-YYYY.md, начать новый.
 
 ## [2026-05-19] create | Claude Code Container
-- Создан Docker-контейнер `claude-code` на хосте 94.130.51.161
+- Создан Docker-контейнер `claude-code` на хосте hermes-eu (192.168.2.34, внешний 94.130.51.188)
 - Образ: `claude-code:latest` (Ubuntu 24.04 + Node.js 20 + Claude Code 2.1.144)
 - Документация: [[entities/claude-code-container]]
 - Dockerfile сохранён в `/workspace/claude-code-docker/Dockerfile`
