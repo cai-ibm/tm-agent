@@ -5,6 +5,12 @@
 > Действия: ingest, update, query, lint, create, archive, delete
 > При превышении 500 записей — ротация: переименовать в log-YYYY.md, начать новый.
 
+## [2026-05-19] create | Claude Code Container
+- Создан Docker-контейнер `claude-code` на хосте 94.130.51.161
+- Образ: `claude-code:latest` (Ubuntu 24.04 + Node.js 20 + Claude Code 2.1.144)
+- Документация: [[entities/claude-code-container]]
+- Dockerfile сохранён в `/workspace/claude-code-docker/Dockerfile`
+
 ## [2026-05-15] create | Инициализация вики
 - Пересобрана структура: убрана папка LLM Wiki/, всё в корне vault
 - CLAUDE.md переписан для Hermes Agent (русский, инструменты Hermes, workflow)
