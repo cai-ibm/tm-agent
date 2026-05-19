@@ -119,3 +119,15 @@
 - Итого: 7 страниц → 4
 - Commit: f03673f, push → origin/main
 
+## [2026-05-19] update | PKI: настройка AIA/CDP/OCSP на Root-CA и Issue-CA
+- Root-CA (192.168.2.33): установлен IIS, вирт. директории /aia и /crl → CertEnroll
+- Root-CA: URL CDP/AIA заменены с pki.ca-ibm.org на certsrv.ca-ibm.org
+- Root-CA: CRL опубликован, HTTP 200 на /crl/Root-CA.crl и /aia/Root-CA.crt
+- Issue-CA: перевыпущен сертификат (RequestId: 4, новый thumbprint 7ED6..., до 19.05.2027)
+- Issue-CA: вирт. директории /aia и /crl → CertEnroll (IIS уже был)
+- Issue-CA: URL публикации оставлены на pki.ca-ibm.org + OCSP
+- Issue-CA: настроен OCSP-ответчик (ocsp.msc → issue-ca-ocsp), POST 200
+- WinRM на Root-CA: исправлен LocalAccountTokenFilterPolicy (reg add)
+- Оба CA: CRL автообновление 7 дней + delta 1 день
+- Создана страница: [[pki-ca-ibm-org]]
+
