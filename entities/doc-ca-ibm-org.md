@@ -85,7 +85,39 @@ volumes:
 
 Можно монтировать StorageBox SMB-шару с Windows/Mac/Linux и кидать файлы прямо в `consume/` — Paperless подберёт их оттуда.
 
+## Бэкап
+
+Раз в день в 3:00 ночи через cron.
+
+| Что бэкапится | Куда | Размер | Retention |
+|---|---|---|---|
+| PostgreSQL (метаданные, теги, OCR-текст) | `StorageBox/paperless-backups/db/` | ~200 KB | 30 дней |
+| Поисковый индекс + настройки | `StorageBox/paperless-backups/data/` | ~200 MB | 30 дней |
+| Файлы документов (PDF/изображения) | StorageBox `paperless-media/` | (CIFS — снимки делает Hetzner) | ∞ |
+
+**Скрипт:** `/opt/paperless/backup-paperless.sh`
+**Лог:** `/var/log/paperless-backup.log`
+**Cron:** `0 3 * * * /opt/paperless/backup-paperless.sh >> /var/log/paperless-backup.log 2>&1`
+
+### Восстановление
+
+```bash
+# 1. Восстановить БД
+gunzip -c /mnt/storagebox/paperless-backups/db/paperless-db-YYYY-MM-DD_HH-MM-SS.sql.gz | \
+  docker exec -i paperless-db-1 psql -U paperless paperless
+
+# 2. Восстановить данные (поисковый индекс)
+tar xzf /mnt/storagebox/paperless-backups/data/paperless-data-YYYY-MM-DD_HH-MM-SS.tar.gz \
+  -C /opt/paperless
+
+# 3. Перезапустить Paperless
+cd /opt/paperless && docker compose restart webserver
+```
+
+Файлы документов на StorageBox живут отдельно — их восстанавливать не нужно, они уже там.
+
 ## История изменений
 
 - **22.05.2026** — Установка Paperless (на сервере 94.130.51.161)
 - **22.05.2026** — Перенос media и consume на StorageBox (sub-account u488607-sub1)
+- **22.05.2026** — Настроен ежедневный бэкап БД+данных на StorageBox в 3:00 (retention 30 дней)
