@@ -51,6 +51,9 @@ C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeou
 :: Run WACS renewal
 wacs.exe --renew --closeonfinish >> C:\temp\renew_log.txt 2>&1
 
+:: Post-renew: move cert to My store (Exchange can't see WebHosting) + enable
+powershell.exe -NoProfile -NonInteractive -Command "$cert = Get-ChildItem Cert:\LocalMachine\WebHosting | Where-Object {$_.Subject -like '*mail.ca-ibm.org*' -and $_.DnsNameList -contains 'autodiscover.ca-ibm.org'} | Sort-Object NotAfter -Descending | Select-Object -First 1; if ($cert) { $cert | Move-Item -Destination Cert:\LocalMachine\My -Force; Add-PSSnapin Microsoft.Exchange.Management.PowerShell.SnapIn; Enable-ExchangeCertificate -Thumbprint $cert.Thumbprint -Services IIS,SMTP -Confirm:`$false -Force }" >> C:\temp\renew_log.txt 2>&1
+
 :: Disable NAT
 C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i C:\Users\hermes\.ssh\id_mikrotik hermes@192.168.2.1 /ip/firewall/nat/set numbers=14 disabled=yes >> C:\temp\renew_log.txt 2>&1
 ```
