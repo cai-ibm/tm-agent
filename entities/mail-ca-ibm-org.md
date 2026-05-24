@@ -93,7 +93,13 @@ NPM обслуживает только techbau.org.
 - HSTS присутствует: `max-age=63072000; preload`
 - X-Frame-Options: `DENY` / `SAMEORIGIN`
 - TLS 1.0/1.1 отключены
-- Сертификат Let's Encrypt R13 (wildcard *.ca-ibm.org, до 14.06.2026)
+- ~~Сертификат Let's Encrypt R13 (wildcard *.ca-ibm.org, до 14.06.2026)~~ **ЗАМЕНЁН** 24.05.2026
+- 🔄 **Новый сертификат Let's Encrypt:** CN=mail.ca-ibm.org (SAN: mail.ca-ibm.org, autodiscover.ca-ibm.org, webmail.ca-ibm.org)
+  - Выпущен: 24.05.2026, истекает: 22.08.2026
+  - Thumbprint: F5BCE4D74E8D58419EAEEA2E1C021832456287E5
+  - Хранилище: WebHosting (LocalMachine)
+  - WACS renewal: [Manual] mail.ca-ibm.org, следующее обновление после 18.07.2026
+  - Плагины: Manual source → SelfHosting HTTP-01 → IIS (site id=1)
 - SMTP 25 защищён anti-spam
 
 ## Связанные сущности
@@ -107,6 +113,7 @@ NPM обслуживает только techbau.org.
 
 ## История изменений
 
+- **24.05.2026 18:43** — **Сертификат обновлён.** Wildcard `*.ca-ibm.org` (истекал 14.06.2026) заменён на `CN=mail.ca-ibm.org` с SAN-именами `autodiscover.ca-ibm.org`, `webmail.ca-ibm.org`. Использован WACS 2.2.9.1701: Manual source → SelfHosting HTTP-01 → IIS. Сертификат в WebHosting store, thumbprint F5BCE4D7... истекает 22.08.2026. Автообновление после 18.07.2026. В процессе создан SSH-доступ для пользователя `hermes` на MikroTik (управление NAT правило 14, порт 80). Скрипт обновления сертификата с автоматическим включением/отключением NAT: [[exchange-cert-renew-script]].
 - **18.05.2026 19:35** — DAG01 удалён. База переведена на standalone (Master=MAIL-SRV1). MAIL-SRV2 остаётся в Exchange. Кластер остановлен и отключён.
 - **17.05.2026 10:52** — Включён Extended Protection (EPA) на всех виртуальных директориях: Autodiscover, PowerShell (Allow), server root (Allow). OWA/ECP/MAPI (Require), EWS/ActiveSync (Allow) — были ранее. Подробнее: [[exchange-extended-protection]]
 - **16.05.2026** — Успешная подмена disclosure-заголовков: X-FEServer → MAIL.CA-IBM.ORG, X-OWA-Version → 15.02.2562.037, X-Powered-By и X-AspNet-Version → пусто. Подробнее: [[exchange-iis-headers]]
