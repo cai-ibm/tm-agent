@@ -38,7 +38,7 @@ wacs.exe --source manual ^
 
 **Имя задачи:** `Exchange Certificate Renew`  
 **Пользователь:** `NT AUTHORITY\SYSTEM`  
-**Триггер:** Daily в 03:00  
+**Триггер:** Weekly, по пятницам в 23:00  
 **Скрипт:** `C:\temp\renew.bat`
 
 ```batch
