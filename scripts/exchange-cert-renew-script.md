@@ -34,20 +34,31 @@ wacs.exe --source manual ^
   --closeonfinish
 ```
 
-## Скрипт обновления (renew.bat)
+## Scheduled Task (основной способ)
+
+**Имя задачи:** `Exchange Certificate Renew`  
+**Пользователь:** `NT AUTHORITY\SYSTEM`  
+**Триггер:** Daily в 03:00  
+**Скрипт:** `C:\temp\renew.bat`
 
 ```batch
 @echo off
 cd /d C:\inetpub\letsencrypt
 
-:: 1. Enable NAT port 80
-C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i C:\Users\hermes\.ssh\id_mikrotik hermes@192.168.2.1 /ip/firewall/nat/set numbers=14 disabled=no
+:: Enable NAT port 80
+C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i C:\Users\hermes\.ssh\id_mikrotik hermes@192.168.2.1 /ip/firewall/nat/set numbers=14 disabled=no >> C:\temp\renew_log.txt 2>&1
 
-:: 2. Run WACS
+:: Run WACS renewal
+wacs.exe --renew --closeonfinish >> C:\temp\renew_log.txt 2>&1
+
+:: Disable NAT
+C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i C:\Users\hermes\.ssh\id_mikrotik hermes@192.168.2.1 /ip/firewall/nat/set numbers=14 disabled=yes >> C:\temp\renew_log.txt 2>&1
+```
+
+### Ручной запуск
+```batch
+:: Однократный выпуск (не renewal)
 wacs.exe --source manual --host mail.ca-ibm.org,autodiscover.ca-ibm.org,webmail.ca-ibm.org --validation selfhosting --validationmode http-01 --installation iis --installationsiteid 1 --accepttos --emailaddress support@ca-ibm.org --closeonfinish
-
-:: 3. Disable NAT
-C:\Windows\System32\OpenSSH\ssh.exe -o StrictHostKeyChecking=no -o ConnectTimeout=5 -i C:\Users\hermes\.ssh\id_mikrotik hermes@192.168.2.1 /ip/firewall/nat/set numbers=14 disabled=yes
 ```
 
 ## Запуск
