@@ -47,19 +47,7 @@ confidence: high
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager, точка входа
 - [[server-94-130-51-161]] — Hetzner (предыдущий nginx)
 
-## WordPress — админ-доступ
-
-- **URL**: http://192.168.2.39/wp-admin
-- **Логин**: `adm`
-- **Пароль**: `Superp@ss2020wordpress`
-
-## Контент и формы
-
-- **WPForms**: 1 форма — «Kontaktformular» (ID=12), переведена на немецкий 25.05.2026
-- **Поля**: Name → E-Mail → Betreff → Nachricht, кнопка «NACHRICHT SENDEN»
-- Подтверждение: «Vielen Dank für Ihre Nachricht! Wir werden uns in Kürze bei Ihnen melden.»
-
 ## История изменений
 
-- **2026-05-25** — WPForms переведены на немецкий (через MySQL REPLACE на сервере)
+- **2026-05-25** — WPForms-форма отключена на главной (шорткод убран) после инцидента с REPLACE
 - **2026-05-15** — Добавлен в NPM как proxy host (id=1), страница создана
