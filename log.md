@@ -5,6 +5,13 @@
 > Действия: ingest, update, query, lint, create, archive, delete
 > При превышении 500 записей — ротация: переименовать в log-YYYY.md, начать новый.
 
+## [2026-06-01] create | IBT-files NFS
+- Смонтирована NFS-шара `192.168.3.253:/IBT-files` → `/mnt/ibt-nfs` на hermes-eu
+- Прописана в /etc/fstab: NFSv4.1, rw,hard,intr,_netdev
+- Ёмкость: 32T (25T занято, 7.9T свободно)
+- Создана страница: [[ibt-files-nfs]]
+- Обновлён index.md: 11 → 12 страниц
+
 ## [2026-05-19] create | Claude Code Container
 - Создан Docker-контейнер `claude-code` на хосте hermes-eu (192.168.2.34, внешний 94.130.51.188)
 - Образ: `claude-code:latest` (Ubuntu 24.04 + Node.js 20 + Claude Code 2.1.144)

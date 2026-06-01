@@ -6,6 +6,7 @@
 
 ## Entities
 
+- [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files → /mnt/ibt-nfs (32T)
 - [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (Docker), только techbau.org
 - [[pki-ca-ibm-org]] — Двухуровневая PKI: Root-CA (certsrv.ca-ibm.org) + Issue-CA (pki.ca-ibm.org), OCSP
