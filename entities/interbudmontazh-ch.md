@@ -15,7 +15,7 @@ confidence: high
 
 | Параметр | Значение |
 |----------|----------|
-| **Домен** | interbudmontazh.ch |
+| **Домен** | interbudmontazh.ch.ca-ibm.org |
 | **IP** | 192.168.2.39 (Coolify) |
 | **Платформа** | Coolify v4.1.1 |
 | **CMS** | WordPress (wordpress:latest) |
@@ -24,6 +24,7 @@ confidence: high
 | **Страниц** | 24 |
 | **Название** | CAI interbudmontazh |
 | **Пользователи** | 1 (adm) |
+| **Протокол** | HTTP (без HTTPS, без редиректов) |
 
 ## Креды MariaDB
 
@@ -35,14 +36,16 @@ confidence: high
 | Root | `yP0WBG9XEtMncji0yXO3Y2cqZDP0xXfF` |
 | UUID | `dvr9kjj972k9ofsxei5hjb6x` |
 
-## Проксирование через NPM (94.130.51.161)
+## Проксирование и редиректы
 
-| Параметр | Значение |
-|----------|----------|
-| **NPM Host ID** | 5 (удалён, заменён на редирект) |
-| **Редирект** | interbudmontazh.ch → https://interbudmontazh.com (301, без сохранения пути) |
-| **SSL** | Let's Encrypt (npm-18, до Sep 2026) |
-| **Advanced** | `proxy_set_header X-Forwarded-Proto https;` |
+| Направление | Тип | Куда |
+|-------------|-----|------|
+| interbudmontazh.ch (любая страница) | 301 редирект | → https://interbudmontazh.com/ |
+| interbudmontazh.ch.ca-ibm.org | Прямой доступ HTTP | → Caddy (Coolify на 192.168.2.39) |
+
+**Прямой доступ без NPM**: `interbudmontazh.ch.ca-ibm.org` — Caddy на 192.168.2.39 принимает запросы по HTTP, без SSL, без редиректов.
+
+SSL сертификат для `interbudmontazh.ch` есть (LE npm-18, до Sep 2026), используется только для 301 редиректа.
 
 ### Схема трафика
 
@@ -50,7 +53,15 @@ confidence: high
 Пользователь → interbudmontazh.ch (любая страница)
   → NPM (94.130.51.161) 
   → 301 редирект → https://interbudmontazh.com/
+
+Пользователь → interbudmontazh.ch.ca-ibm.org
+  → Caddy (192.168.2.39)
+  → WordPress container → MariaDB
 ```
+
+## wp-config.php
+
+Принудительное включение HTTPS (`$_SERVER['HTTPS'] = 'on'`) **удалено**. Сайт работает только по HTTP. В контенте остались старые ссылки на `https://interbudmontazh.ch/` (из Porto темы, элементов Elementor, меню), но сам движок не перенаправляет на HTTPS.
 
 ## Исходные данные (fozzy.com)
 
@@ -64,9 +75,9 @@ confidence: high
 
 ## Примечания
 
-- wp-config.php принудительно включает HTTPS (`$_SERVER['HTTPS'] = 'on'`)
 - На fozzy остались файлы, архив на 94.130.51.161 в /tmp/interbud_wp_content.tar.gz
-- БД interbud_wp на 192.168.2.39 пока есть (старая, не в Coolify)
+- БД interbud_wp на 192.168.2.39 есть (старая, не в Coolify)
+- Для запуска .com нужно создать отдельный ресурс в Coolify или домен в настройках
 
 ## Связанные сущности
 
@@ -75,4 +86,4 @@ confidence: high
 
 ## История изменений
 
-- **2026-06-03** — Мигрирован с fozzy.com. Развёрнут в Coolify (UUID dvr9kjj972k9ofsxei5hjb6x). NPM proxy host ID 5, SSL LE npm-18.
+- **2026-06-03** — Мигрирован с fozzy.com. Развёрнут в Coolify (UUID dvr9kjj972k9ofsxei5hjb6x). Добавлен домен interbudmontazh.ch.ca-ibm.org (только HTTP). wp-config: HTTPS принуждение удалено. 301 редирект .ch → .com через NPM.
