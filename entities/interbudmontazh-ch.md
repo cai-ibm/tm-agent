@@ -39,19 +39,17 @@ confidence: high
 
 | Параметр | Значение |
 |----------|----------|
-| **NPM Host ID** | 5 |
-| **Forward** | 192.168.2.39:80 (HTTP) |
+| **NPM Host ID** | 5 (удалён, заменён на редирект) |
+| **Редирект** | interbudmontazh.ch → https://interbudmontazh.com (301, без сохранения пути) |
 | **SSL** | Let's Encrypt (npm-18, до Sep 2026) |
 | **Advanced** | `proxy_set_header X-Forwarded-Proto https;` |
 
 ### Схема трафика
 
 ```
-Интернет → https://interbudmontazh.ch
-  → 94.130.51.161 (NPM, SSL)
-  → Caddy (Coolify на 192.168.2.39)
-  → WordPress container
-  → MariaDB container
+Пользователь → interbudmontazh.ch (любая страница)
+  → NPM (94.130.51.161) 
+  → 301 редирект → https://interbudmontazh.com/
 ```
 
 ## Исходные данные (fozzy.com)
