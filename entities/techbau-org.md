@@ -1,16 +1,16 @@
 ---
 title: techbau.org (192.168.2.39)
 created: 2026-05-15
-updated: 2026-05-15
+updated: 2026-06-03
 type: entity
-tags: [server, nginx, wordpress, service]
+tags: [server, wordpress, coolify, service, docker]
 sources: []
 confidence: high
 ---
 
-# techbau.org — сайт на WordPress
+# techbau.org — сайт на WordPress (Coolify)
 
-Корпоративный сайт на WordPress, размещён на отдельной ВМ.
+Корпоративный сайт на WordPress, размещён в Coolify на 192.168.2.39.
 
 ## Основные параметры
 
@@ -18,36 +18,56 @@ confidence: high
 |----------|----------|
 | **Домен** | techbau.org |
 | **IP (внутренний)** | 192.168.2.39 |
-| **Веб-сервер** | nginx/1.24.0 (Ubuntu) |
-| **CMS** | WordPress |
-| **API** | `/wp-json/` |
-| **Порт** | 80 (HTTP) |
+| **Платформа** | Coolify v4.1.1 |
+| **CMS** | WordPress в Docker (wordpress:latest) |
+| **БД** | MariaDB 11 (в Docker) |
+| **Веб-сервер** | Caddy (от Coolify) |
+| **Порт** | 80 (HTTP внутри) |
+| **Тема** | Astra |
+| **Страниц** | 5 |
+| **Пользователь** | `adm` |
+
+## Coolify credentials
+
+- URL: `http://192.168.2.39:8000`
+- Email: `cai.adm.com@gmail.com`
+- Pass: `Superp@ss2020coolify`
 
 ## Проксирование
 
-Проксируется через [[nginx-pm-192-168-2-31]] (Nginx Proxy Manager):
+Проксируется через NPM на 94.130.51.161 (ID 4):
 
 | Параметр | Значение |
 |----------|----------|
-| **Proxy Host ID** | 1 |
-| **Схема** | HTTP |
-| **Forward** | 192.168.2.39:80 |
-| **Внешний IP** | 94.130.51.188 (NAT → 192.168.2.31) |
+| **NPM Host ID** | 4 |
+| **Домены** | techbau.org (без www — DNS не настроен) |
+| **Схема** | HTTP → 192.168.2.39:80 |
+| **SSL** | Let's Encrypt (до Sep 2026) |
+| **Advanced config** | `proxy_set_header X-Forwarded-Proto https;` |
 
 ### Схема трафика
 
 ```
-Интернет → 94.130.51.188 (NAT) → 192.168.2.31 (NPM) → 192.168.2.39 (nginx/WordPress)
+Интернет → https://techbau.org 
+  → 94.130.51.161 (NPM, SSL terminated)
+  → Caddy (Coolify на 192.168.2.39)
+  → WordPress container (wordpress:latest)
+  → MariaDB container
 ```
 
-✅ NAT настроен, сайт доступен снаружи.
+## Примечания
+
+- wp-config.php принудительно включает `$_SERVER['HTTPS'] = 'on'` (Caddy не передаёт X-Forwarded-Proto)
+- Внутренний Coolify-домен: `wordpress-cqtg069uw0cujjjjg9jsfsj5.94.130.51.188.sslip.io`
+- Системный nginx на 192.168.2.39 отключён — 80/443 заняты Caddy от Coolify
 
 ## Связанные сущности
 
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager, точка входа
-- [[server-94-130-51-161]] — Hetzner (предыдущий nginx)
+- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (устарел, NPM теперь на 94.130.51.161)
+- [[server-94-130-51-161]] — Hetzner, там NPM
 
 ## История изменений
 
-- **2026-05-25** — WPForms-форма отключена на главной (шорткод убран) после инцидента с REPLACE
-- **2026-05-15** — Добавлен в NPM как proxy host (id=1), страница создана
+- **2026-06-03** — Переезд на Coolify (Docker-контейнер). Nginx отключён. NPM перенесён на 94.130.51.161 (ID 4). SSL через LE.
+- **2026-05-25** — WPForms-форма отключена на главной после инцидента с REPLACE
+- **2026-05-15** — Добавлен в NPM как proxy host, страница создана
