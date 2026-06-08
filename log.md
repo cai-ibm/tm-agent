@@ -5,6 +5,13 @@
 > Действия: ingest, update, query, lint, create, archive, delete
 > При превышении 500 записей — ротация: переименовать в log-YYYY.md, начать новый.
 
+## [2026-06-08] update | n8n 2.13.4 → 2.23.4, MCP SDK
+- Обновлён n8n на Hetzner (94.130.51.161): pull образа, recreate контейнера
+- SDK-валидация через MCP заработала
+- Создан и выполнен workflow test-v2 с Manual Trigger через MCP
+- В Obsidian задокументирована конфигурация MCP (URL, инструменты, конфиг)
+- Обновлена страница server-94-130-51-161: версия n8n, список workflow, MCP-секция
+
 ## [2026-06-01] create | IBT-files NFS
 - Смонтирована NFS-шара `192.168.3.253:/IBT-files` → `/mnt/ibt-nfs` на hermes-eu
 - Прописана в /etc/fstab: NFSv4.1, rw,hard,intr,_netdev
