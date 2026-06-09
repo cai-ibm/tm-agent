@@ -3,7 +3,7 @@ title: Twenty CRM
 created: 2026-06-09
 updated: 2026-06-09
 type: entity
-tags: [crm, twenty, coolify, service, docker]
+tags: [crm, twenty, coolify, docker, postgres]
 sources: []
 confidence: high
 ---
@@ -16,41 +16,62 @@ confidence: high
 
 | Параметр | Значение |
 |----------|----------|
-| **Статус** | Развёрнут через Coolify (HTTP 201) |
-| **Coolify UUID** | `aj2wfwftl3bav589z3jjq1it` |
-| **Сервер** | docker-host2 (192.168.2.31, uuid: `b14cjjl628nbf5z15r2vwxg9`) |
-| **Проект** | CAI (`vvz540r0j7qaa4i9ongoq5dt`) → production |
-| **Тип** | Сервис (docker-compose) |
+| **Статус** | ✅ Запущен (HTTP 200) |
+| **Сервер** | docker-host2 (192.168.2.31) |
+| **Метод** | Docker Compose вручную (`/opt/twenty/docker-compose.yml`) |
+| **Путь к compose** | `/opt/twenty/` |
+| **Coolify UUID** | `jj2aht57z9ngybhk96zhwzcd` (предыдущие: `aj2...`, `mdq...`, `b5e...`) |
 
-## Контейнеры
+## Контейнеры (Docker Compose)
 
-### server
+### twenty-server-1
 | Параметр | Значение |
 |----------|----------|
 | **Образ** | `twentycrm/twenty:latest` |
-| **Порт** | 3000 |
-| **Домен** | (будет присвоен Coolify) |
+| **Порт** | `0.0.0.0:3000->3000/tcp` |
+| **Статус** | Up |
 
-### redis
+### twenty-redis-1
 | Параметр | Значение |
 |----------|----------|
 | **Образ** | `redis:7` |
-| **Назначение** | Очереди и кеш |
+| **Статус** | Up (healthy) |
 
-## База данных (внешняя)
+## Переменные окружения server
+
+| Переменная | Значение |
+|-----------|----------|
+| NODE_PORT | 3000 |
+| PG_DATABASE_URL | `postgres://twenty:***@192.168.2.34:5433/twenty` |
+| REDIS_URL | `redis://redis:6379` |
+| SERVER_URL | `http://server:3000` |
+| ENCRYPTION_KEY | `twenty2024-encryption-key-32chars!!` |
+
+## База данных
 
 | Параметр | Значение |
 |----------|----------|
-| **Хост** | 192.168.2.34 (Supabase PG) |
-| **Порт** | 5432 |
+| **Тип** | Supabase PG (192.168.2.34) |
+| **Порт** | 5433 (прямой socat-туннель, минуя supavisor) |
 | **База** | `twenty` |
 | **Пользователь** | `twenty` |
 | **Пароль** | `twenty2024` |
-| **Строка** | `postgres://twenty:***@192.168.2.34:5432/twenty` |
+| **Строка** | `postgres://twenty:***@192.168.2.34:5433/twenty` |
+
+### Socat-туннель
+- Контейнер: `pg-direct-tunnel` на 192.168.2.34
+- Образ: `alpine/socat`
+- Проброс: порт 5433 → TCP:supabase-db:5432
+- Сеть: `supabase_default`
 
 ## Доступ
 
-Адрес: `http://192.168.2.31:3000` (после завершения деплоя)
+- **Локально:** `http://192.168.2.31:3000`
+- **NestJS** успешно стартует, миграции выполнены, 23 cron job зарегистрированы
+- При первом входе нужно зарегистрировать workspace
 
 ## История изменений
-- **09.06.2026** — Развёрнут через Coolify API (POST /api/v1/services). Сервис UUID: `aj2wfwftl3bav589z3jjq1it`.
+- **09.06.2026 17:00** — Запущен вручную через Docker Compose (`/opt/twenty/`). HTTP 200.
+- **09.06.2026** — Попытки развернуть через Coolify API (3 итерации). Неудачно — маскировка пароля.
+- **09.06.2026** — Создан pg-direct-tunnel (порт 5433 → supabase-db:5432).
+- **09.06.2026** — Создана БД `twenty`, пользователь `twenty` на Supabase PG.
