@@ -158,3 +158,13 @@
 |- Выполнена очистка места: journalctl → 200M, удалены старые syslog.gz, apt clean
 |- Освобождено ~1.3 GB (74% → 58%)
 |- Создана страница: [[серверы/188-124-56-126]]
+## [2026-06-10] update | stargate.ca-ibm.org — полная инвентаризация
+- Разрезвлён DNS-запрос: IP 94.130.51.147
+- Подключение по SSH (Superp@ss2020root)
+- Обнаружен Apache2 (а не nginx), MariaDB 10.11.13, PHP 8.3.6, Redis, APCu, Let's Encrypt
+- Приложения: collectives, contacts, external, groupfolders, onlyoffice, recognize
+- SMTP: порт 2526, режим smtp, relay через smtp-relay-ca-ibm
+- Бэкап: /root/nextcloud-backup-20260508/ (config.php + db.sql.gz + onlyoffice-app)
+- Фоновые задачи: cron
+- Режим логирования: DEBUG
+- Обновлена страница: [[stargate-ca-ibm-org]]
