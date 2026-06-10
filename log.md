@@ -148,6 +148,13 @@
 - Issue-CA: URL публикации оставлены на pki.ca-ibm.org + OCSP
 - Issue-CA: настроен OCSP-ответчик (ocsp.msc → issue-ca-ocsp), POST 200
 - WinRM на Root-CA: исправлен LocalAccountTokenFilterPolicy (reg add)
-- Оба CA: CRL автообновление 7 дней + delta 1 день
-- Создана страница: [[pki-ca-ibm-org]]
-
+|- Оба CA: CRL автообновление 7 дней + delta 1 день
+|- Создана страница: [[pki-ca-ibm-org]]
+|
+|## [2026-06-10] create | Инвентаризация 188.124.56.126 (Amnezia VPN)
+|- Создан пользователь cai + sudo, настроен sshpass
+|- Проведена полная инвентаризация: Ubuntu 24.04 LTS, 1 vCPU, 1GB RAM, 10GB disk
+|- Docker 29.1.3, контейнеры: amnezia-xray (443), amnezia-awg2 (30558/udp)
+|- Выполнена очистка места: journalctl → 200M, удалены старые syslog.gz, apt clean
+|- Освобождено ~1.3 GB (74% → 58%)
+|- Создана страница: [[серверы/188-124-56-126]]
