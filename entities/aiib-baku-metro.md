@@ -5,63 +5,62 @@ status: active
 tags: [aiib, baku, metro, azerbaijan, transport, monitoring]
 phase1: "Approved"
 phase1_funding: "USD 180 million"
+phase1_total_cost: "USD 212.4 million"
 phase2: "Proposed"
 phase2_funding: "USD 700 million"
+phase2_total_cost: "~USD 826.6 million"
+program_total: "USD 2.455 billion"
 ---
 
 # AIIB: Baku Metro Expansion Project 🇦🇿🚇
 
-**Asian Infrastructure Investment Bank** — финансирование расширения Бакинского метрополитена.
+**Asian Infrastructure Investment Bank** — финансирование расширения Бакинского метрополитена. Полная программа: **USD 2.455 млрд**.
 
-## 📊 Обзор проектов
+## 📊 Сводка проектов
 
-| Параметр | Phase I | Phase II (Green Line) |
-|---|---|---|
-| 🆔 Номер проекта | 000969 | — (новая заявка) |
-| ✅ Статус | **Approved** | **Proposed** |
-| 💰 Финансирование | **USD 180 млн** | **USD 700 млн** |
-| 🏦 Тип | Суверенное | Суверенное |
-| 📂 Сектор | Транспорт | Транспорт |
-| 🟢 E&S | Category B | Category B |
-| 📅 Concept Review | 29.05.2025 | — |
-| ✅ Утверждение | 06.02.2026 | — |
+| Параметр | Phase I | Phase II (Green Line) | Phase III |
+|---|---|---|---|
+| 🆔 Номер | P000969 | — | — |
+| ✅ Статус | **Approved** ✅ | **Proposed** ⏳ | Планируется 🔜 |
+| 💰 AIIB | **$180 млн** | **$700 млн** | $400-500 млн |
+| 💲 Govt | $32.4 млн | $126.6 млн | — |
+| 💵 Всего | **$212.4 млн** | **~$826.6 млн** | — |
+| 🏦 Тип | Суверенный | Суверенный | — |
+| 🗓 Завершение | **31.12.2029** | **31.12.2030** | 2027-2030 |
+| 📏 Объём | Депо Дарнагюль + Ходжасан | **8.6 км, 4 станции, TBM** | Подвижной состав |
 
-## 🏗 Phase I — Инфраструктурная база
+## 🏗 Phase I — Детали
 
 **Компоненты:**
-1. 🏭 **Депо Дарнагюль** — строительство и оборудование
-2. 🏭 **Депо Ходжасан** — строительство и оборудование
-3. 🚉 **Модернизация 10 станций** Зелёной линии (экология, безопасность, климат)
-4. 🧑‍💼 **Консультационные услуги** — надзор, проектирование, оценка воздействия
+1. 🏭 Депо Дарнагюль — строительство + оборудование
+2. 🏭 Депо Ходжасан — строительство + оборудование
+3. 🚉 Модернизация 10 станций Зелёной линии
+4. 🧑‍💼 Консультационные услуги (К1: $165 млн + $15 млн AIIB)
 
-**Ключевая роль:** Создание операционного фундамента для разделения Красной и Зелёной линий на станции «28 Мая».
+**KPI (2029):** MKBF 35,000 км | Доступность >80% | MTTR 6 ч | LTIFR <3.0
 
-## 🏗 Phase II (Green Line) — Расширение
+**Кредит:** 20 лет, 3.5 г grace period
 
-- Продление Зелёной линии метро
-- Закупка подвижного состава
-- Дополнительная инфраструктура
-- ⏳ Статус: **Proposed** (детальная страница пока не опубликована)
+## 🏗 Phase II — Green Line Extension
 
-## 🌿 Экология и социум
+**Khatai → Hazi Aslanov** — продление Зелёной линии на **8.6 км** с **4 станциями** через TBM.
+- Начало: Q3 2026 | Завершение: 31.12.2030
+- Appraisal AIIB: 2026
+- Триггеры: успех Phase I (ESMP, проектирование)
 
-- **ESMP** + **SEP** — опубликованы 05.12.2025
-- **Gender Action Plan** — разработан
-- Переселения не ожидается (земля Бакинского метрополитена)
+## 🌿 Климат
+- 100% mitigation finance ($180 млн Phase I)
+- GHG reduction: **150,352 tCO2e/год** (весь Program)
+- Зелёный сертификат депо (LEED/BREEAM — рассматривается)
 
 ## 🔗 Ссылки
-
-- 🔗 [Phase I на AIIB](https://www.aiib.org/en/projects/details/2025/approved/azerbaijan-baku-metro-expansion-project-phase-i.html)
-- 🔗 [Phase II в списке AIIB](https://www.aiib.org/en/projects/list/index.html?search=baku+metro)
-- 📄 [[Baku-Metro-Phase-I]] — полная оцифровка
-- 📄 [[Baku-Metro-Phase-II]] — полная оцифровка
+- [[Baku-Metro-Phase-I]] — полная оцифровка с объёмами
+- [[Baku-Metro-Phase-II]] — полная оцифровка
+- [Phase I на AIIB](https://www.aiib.org/en/projects/details/2025/approved/azerbaijan-baku-metro-expansion-project-phase-i.html)
+- [Project Document PDF (52 стр.)](https://www.aiib.org/en/projects/details/2026/_download/Azerbaijan/Republic-of-Azerbaijan-Baku-Metro-Expansion-Project-Phase-I.pdf)
+- Nextcloud: [[Baku-metro-Faza-1]] и [[Baku-metro-Faza-2]]
 
 ## 🤖 Мониторинг
-
-- Ежедневный скрипт: `~/.hermes/scripts/aiib-baku-metro-monitor.py`
-- Cron: ежедневно в 9:00 UTC
+- Ежедневно 9:00 UTC → скрипт + RSS
 - Навык: `aiib-baku-metro-monitor`
-
-**Последняя проверка:** 2026-06-11
-**Статус Phase I:** ✅ Approved, USD 180 млн → без изменений
-**Статус Phase II:** ⏳ Proposed, USD 700 млн → без изменений
+- Последняя проверка: 2026-06-11 → без изменений
