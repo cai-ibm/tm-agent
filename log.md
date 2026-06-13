@@ -10,6 +10,10 @@
 - SDK-валидация через MCP заработала
 - Создан и выполнен workflow test-v2 с Manual Trigger через MCP
 - В Obsidian задокументирована конфигурация MCP (URL, инструменты, конфиг)
+
+## [2026-06-13] update | drawDB on Докер1, алиас сервера
+- Добавлен алиас «Докер1» для [[server-94-130-51-161]]
+- Развёрнут drawDB (drawdb.ca-ibm.org) на порту 3001, через NPM + LE
 - Обновлена страница server-94-130-51-161: версия n8n, список workflow, MCP-секция
 
 ## [2026-06-01] create | IBT-files NFS
