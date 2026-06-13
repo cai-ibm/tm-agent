@@ -14,7 +14,7 @@
 ## [2026-06-13] update | drawDB on Докер1, алиас сервера
 - Добавлен алиас «Докер1» для [[server-94-130-51-161]]
 - Развёрнут drawDB (drawdb.ca-ibm.org) на порту 3001, через NPM + LE
-- Обновлена страница server-94-130-51-161: версия n8n, список workflow, MCP-секция
+- Создана страница [[drawdb-ca-ibm-org]]
 
 ## [2026-06-01] create | IBT-files NFS
 - Смонтирована NFS-шара `192.168.3.253:/IBT-files` → `/mnt/ibt-nfs` на hermes-eu

@@ -2,7 +2,7 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-Обновлено: 2026-06-10 | Всего страниц: 13
+Обновлено: 2026-06-13 | Всего страниц: 14
 
 ## Мониторинг
 
@@ -16,6 +16,7 @@
 - [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (Docker), только techbau.org
 - [[pki-ca-ibm-org]] — Двухуровневая PKI: Root-CA (certsrv.ca-ibm.org) + Issue-CA (pki.ca-ibm.org), OCSP
 - [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04), nginx reverse proxy, n8n, OnlyOffice DS
+- [[drawdb-ca-ibm-org]] — drawDB: онлайн-редактор ER-диаграмм и SQL-генератор на Докер1
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3 object storage, OnlyOffice интеграция
 - [[onlyoffice-docx-readonly]] — OnlyOffice word-редактор не активируется (.docx read-only), таблицы работают
