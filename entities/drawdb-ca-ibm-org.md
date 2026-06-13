@@ -5,6 +5,7 @@ created: 2026-06-13
 updated: 2026-06-13
 type: entity
 tags: [service, docker, database, erd, sql]
+sources: []
 confidence: high
 ---
 

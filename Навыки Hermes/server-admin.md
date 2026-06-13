@@ -1,3 +1,12 @@
+---
+title: server-admin
+created: 2026-05-15
+updated: 2026-06-13
+type: entity
+tags: []
+sources: []
+confidence: medium
+---
 # server-admin
 
 **Категория:** devops
@@ -26,3 +35,7 @@
 ---
 
 *Создано Hermes Agent. Obsidian — основной источник.*
+
+## Связанные страницы
+
+[[server-94-130-51-161]], [[mail-ca-ibm-org]]

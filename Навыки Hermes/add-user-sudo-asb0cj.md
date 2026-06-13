@@ -1,3 +1,12 @@
+---
+title: add-user-sudo-asb0cj
+created: 2026-05-15
+updated: 2026-06-13
+type: entity
+tags: []
+sources: []
+confidence: medium
+---
 # add-user-sudo-asb0cj
 
 Добавление пользователя в группу sudo на сервере asb-0cj (192.168.30.12) через SSH.
@@ -10,3 +19,11 @@
 Используется Python + pexpect (интерактивный SSH). Пароль `Cai$2023#` содержит `$` — защищаем single quotes в bash. `sudo -S` с pipe через `printf '%s\n'`. Для установки пароля — `chpasswd` (не `passwd`), вызывается через `sh -c`.
 
 Подробности: `skill_view('add-user-sudo-asb0cj')`
+
+## Связанные страницы
+
+[[server-94-130-51-161]]
+
+## Связанные страницы
+
+- [[Навыки Hermes/Навыки Hermes]]

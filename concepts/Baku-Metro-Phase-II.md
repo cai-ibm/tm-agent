@@ -1,3 +1,12 @@
+---
+title: Baku Metro Expansion Project — Phase II (Green Line)
+created: 2026-06-10
+updated: 2026-06-13
+type: concept
+tags: ["aiib", "baku", "metro", "azerbaijan", "transport", "infrastructure"]
+sources: ["entities/aiib-baku-metro.md"]
+confidence: high
+---
 ## 🚇 Baku Metro Expansion Project – Phase II (Green Line)
 
 > **Страница**: [[aiib-baku-metro]] | **Источник**: AIIB Project Document Phase I (разд. 4.3-4.8)
@@ -48,3 +57,7 @@
 - **RSS Proposed** — подтверждён в ленте AIIB
 - Последняя проверка: 11.06.2026
 - Статус: ⏳ Proposed, USD 700 млн — без изменений
+
+## Связанные страницы
+
+[[Baku-Metro-Phase-I]]

@@ -4,6 +4,8 @@ created: 2026-05-19
 updated: 2026-05-19
 type: entity
 tags: [pki, ca, certificates, crl, ocsp, iis]
+sources: []
+confidence: high
 ---
 
 # PKI: Корневой и подчинённый центры сертификации
@@ -99,6 +101,7 @@ CACertPublicationURLs:
 - 2026-05-19: Настроен OCSP-ответчик на Issue-CA (ocsp.msc → issue-ca-ocsp)
 
 ## Связанные страницы
+- [[cloud.ca-ibm.org-2026-05-21]]
 
 - [[server-94-130-51-161]] — внешний сервер с nginx (возможный reverse proxy для pki)
 - [[mail-ca-ibm-org]] — Exchange Server, клиент PKI

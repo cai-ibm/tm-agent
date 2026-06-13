@@ -1,7 +1,11 @@
 ---
+title: SQL: cai-it-inv-w
 created: 2026-05-21
+updated: 2026-06-13
+type: entity
 tags: [sql, mssql, 1c, база-данных, cai-it-inv-w]
-updated: 2026-05-21
+sources: []
+confidence: medium
 ---
 
 # База cai-it-inv-w — MS SQL Server
@@ -131,3 +135,8 @@ updated: 2026-05-21
 - **WinRM**: `cai\hermes` через pywinrm (NTLM)
 - **SQL Trusted Connection**: работает (через .NET SqlConnection)
 - **sqlcmd**: доступен через WinRM PowerShell
+
+## Связанные страницы
+- [[eu-e1c-ca-ibm-org]]
+
+[[server-94-130-51-161]]

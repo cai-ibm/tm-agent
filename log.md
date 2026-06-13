@@ -173,3 +173,17 @@
 - Фоновые задачи: cron
 - Режим логирования: DEBUG
 - Обновлена страница: [[stargate-ca-ibm-org]]
+
+## [2026-06-13] lint | Приведение вики в соответствие с паттерном Karpathy
+- Созданы недостающие директории: comparisons/, queries/, raw/articles/, raw/papers/, raw/transcripts/, raw/assets/
+- Добавлен frontmatter 4 страницам без него: ibt-files-nfs, ocerp-ca-ibm-org, Baku-Metro-Phase-I, Baku-Metro-Phase-II
+- Исправлен нестандартный frontmatter: aiib-baku-metro (были произвольные поля вместо title/tags/sources)
+- Дополнен frontmatter (+sources, +confidence) на 12 страницах
+- Исправлены номера строк (read_file artefact): supabase-192-168-2-34, Парсер тендеров UNGM AIIB, raw/memory/agent-knowledge
+- Добавлен sha256 в frontmatter: raw/memory/agent-knowledge-2026-05-15.md (для детекции дрейфа при re-ingest)
+- Исправлены 4 битых [[wikilinks]]: Baku-metro-Faza-1→Phase-I, sql/cait-inv-w→cai-it-inv-w, escaped bracket в monitoring/index
+- Добавлены недостающие >2 outbound links на 22 страницах
+- Добавлены входящие ссылки (reduced orphans): 11 обратных ссылок от основных сущностей к дочерним
+- Добавлен frontmatter вспомогательным страницам: серверы/, сертификаты/, sql/, СДЭК, Навыки Hermes, monitoring/
+- Обновлён index.md: 14→39 страниц, все секции
+- Всего затронуто: ~38 страниц

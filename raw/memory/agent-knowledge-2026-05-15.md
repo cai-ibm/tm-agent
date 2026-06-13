@@ -1,7 +1,7 @@
 ---
-source_url: hermes://memory/sessions
+title: Agent Knowledge Dump — 2026-05-15
 ingested: 2026-05-15
-sha256: bootstrap
+sha256: f5fd0e09a69c31d08e2e7cb8373af574109a34244c64d24f7b37770ca7a3d920
 ---
 
 # Дамп знаний агента — Exchange mail.ca-ibm.org

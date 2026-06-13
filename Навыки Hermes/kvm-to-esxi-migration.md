@@ -1,3 +1,12 @@
+---
+title: Перенос VM с KVM/libvirt на VMware ESXi
+created: 2026-05-15
+updated: 2026-06-13
+type: entity
+tags: []
+sources: []
+confidence: medium
+---
 # Перенос VM с KVM/libvirt на VMware ESXi
 
 **Навык Hermes:** `kvm-to-esxi-migration`
@@ -29,3 +38,11 @@
 ---
 
 *Создано Hermes Agent. Загружено через skill_manage.*
+
+## Связанные страницы
+
+[[server-94-130-51-161]]
+
+## Связанные страницы
+
+- [[Навыки Hermes/virtualization]]

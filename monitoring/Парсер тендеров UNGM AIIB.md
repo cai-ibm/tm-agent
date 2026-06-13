@@ -1,7 +1,11 @@
 ---
-tags: [UNGM, AIIB, parser, tenders, monitoring, procurement]
-created: 2026-06-11
-updated: 2026-06-11
+title: Парсер тендеров UNGM AIIB
+created: 2026-06-10
+updated: 2026-06-13
+type: entity
+tags: ["aiib", "monitoring", "tender", "script", "parsing"]
+sources: []
+confidence: high
 ---
 
 # Парсер тендеров (UNGM + AIIB)
@@ -146,3 +150,11 @@ python3 main.py
 8. **Ключевые слова — только ручной ввод.** Не добавлять автоматически. Использовать только те, что пользователь ввёл в Notion.
 9. **AIIB — статусы:** Approved и Proposed (On Hold, Terminated/Cancelled исключены).
 10. **AIIB — дата завершения** не заполняется; это инвестиционные проекты, не тендеры.
+
+## Связанные страницы
+
+[[aiib-baku-metro]]
+
+## Связанные страницы
+
+- [[monitoring/index]]

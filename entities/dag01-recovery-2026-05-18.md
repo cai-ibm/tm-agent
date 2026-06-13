@@ -5,6 +5,7 @@ updated: 2026-05-18
 type: entity
 tags: [exchange, dag, cluster, incident, recovery]
 sources: []
+confidence: medium
 ---
 
 # Восстановление DAG01 — 18.05.2026

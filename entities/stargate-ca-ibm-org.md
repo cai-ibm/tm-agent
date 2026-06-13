@@ -213,3 +213,7 @@ sudo -u www-data php /var/www/nextcloud/occ maintenance:mode --off
 - **2026-06-10** — Полная инвентаризация сервера: IP (94.130.51.147, 192.168.2.42), Apache2, Redis, MariaDB 10.11.13, APCu, Let's Encrypt, приложения, SMTP (порт 2526), режим cron, бэкап, команды occ
 - **2026-05-15** — Страница создана при инициализации LLM Wiki
 - **08.05.2026** — Обновление Nextcloud 32.0.3 → 32.0.9, OnlyOffice плагин 9.13.0
+
+## Связанные страницы
+
+- [[onlyoffice-docx-readonly]]

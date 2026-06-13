@@ -1,3 +1,12 @@
+---
+title: NFS Share IBT-files (192.168.3.253)
+created: 2026-06-01
+updated: 2026-06-13
+type: entity
+tags: ["nfs", "storage", "network", "server", "service"]
+sources: []
+confidence: high
+---
 # NFS Share: IBT-files
 
 > NFS-хранилище `192.168.3.253:/IBT-files`, смонтированное на hermes-eu
@@ -17,3 +26,7 @@
 ## История
 
 - **2026-06-01** — первичное монтирование, добавление в /etc/fstab на hermes-eu
+
+## Связанные страницы
+
+[[server-94-130-51-161]], [[stargate-ca-ibm-org]]

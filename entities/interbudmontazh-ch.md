@@ -4,6 +4,7 @@ created: 2026-06-03
 updated: 2026-06-03
 type: entity
 tags: [wordpress, coolify, service, docker]
+sources: []
 confidence: high
 ---
 

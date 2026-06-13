@@ -4,6 +4,7 @@ created: 2026-05-19
 updated: 2026-05-19
 type: entity
 tags: [docker, claude-code, container, ai-agent]
+sources: []
 confidence: high
 ---
 
@@ -73,3 +74,7 @@ RUN npm install -g @anthropic-ai/claude-code
 WORKDIR /workspace
 CMD ["sleep", "infinity"]
 ```
+
+## Связанные страницы
+
+[[mail-ca-ibm-org]], [[server-94-130-51-161]]

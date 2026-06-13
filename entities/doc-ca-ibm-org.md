@@ -4,6 +4,8 @@ created: 2026-05-22
 updated: 2026-05-22
 type: entity
 tags: [server, paperless, documents, ocr, storage, cifs, hetzner]
+sources: []
+confidence: high
 ---
 
 # Paperless-ngx — doc.ca-ibm.org
@@ -121,3 +123,7 @@ cd /opt/paperless && docker compose restart webserver
 - **22.05.2026** — Установка Paperless (на сервере 94.130.51.161)
 - **22.05.2026** — Перенос media и consume на StorageBox (sub-account u488607-sub1)
 - **22.05.2026** — Настроен ежедневный бэкап БД+данных на StorageBox в 3:00 (retention 30 дней)
+
+## Связанные страницы
+
+[[stargate-ca-ibm-org]]

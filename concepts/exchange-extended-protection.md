@@ -4,8 +4,9 @@ created: 2026-05-17
 updated: 2026-05-17
 type: entity
 tags: [exchange, security, hardening, epa, extended-protection]
-parent: "[[mail-ca-ibm-org]]"
+sources: []
 confidence: high
+parent: "[[mail-ca-ibm-org]]"
 ---
 
 # Exchange Extended Protection (EPA)

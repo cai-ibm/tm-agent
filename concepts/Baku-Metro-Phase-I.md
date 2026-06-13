@@ -1,3 +1,12 @@
+---
+title: Baku Metro Expansion Project — Phase I
+created: 2026-06-10
+updated: 2026-06-13
+type: concept
+tags: ["aiib", "baku", "metro", "azerbaijan", "transport", "infrastructure"]
+sources: ["entities/aiib-baku-metro.md"]
+confidence: high
+---
 ## 🚇 Baku Metro Expansion Project – Phase I
 
 > **Страница**: [[aiib-baku-metro]] | **Источник**: AIIB Project Document (52 стр.)
@@ -71,3 +80,7 @@
 ## 📡 Мониторинг
 - Последняя проверка: 11.06.2026
 - Статус: ✅ Approved, USD 180 млн — без изменений
+
+## Связанные страницы
+
+[[Baku-Metro-Phase-II]]

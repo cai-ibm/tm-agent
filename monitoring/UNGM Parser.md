@@ -1,3 +1,12 @@
+---
+title: UNGM Parser
+created: 2026-06-05
+updated: 2026-06-13
+type: entity
+tags: []
+sources: []
+confidence: medium
+---
 ## UNGM Parser
 
 Источник: `maki-obsidian/scripts/ungm/`
@@ -48,3 +57,11 @@ cd ~/.hermes/scripts/ungm_parser && python3 main.py
 ### Пробный запуск (04.06.2026)
 
 84 лота → 3 после keyword-фильтра → 2 после AI → 0 новых (уже сохранены). Процесс полностью рабочий.
+
+## Связанные страницы
+
+[[aiib-baku-metro]]
+
+## Связанные страницы
+
+- [[monitoring/index]]

@@ -1,3 +1,12 @@
+---
+title: OpenConstructionERP (ocerp.ca-ibm.org) — удалён
+created: 2026-05-25
+updated: 2026-05-26
+type: entity
+tags: ["erp", "docker", "construction", "openconstructionerp", "deleted"]
+sources: []
+confidence: high
+---
 # ocerp.ca-ibm.org
 
 **Статус:** УДАЛЁН 26.05.2026 (оба инстанса)
@@ -33,3 +42,7 @@
 - nginx перезагружен
 
 **История:** v4.9.1 → переключён на v4.12.0. Сборка падала из-за TS-ошибки в тестах (formatters.units.test.ts — импорт удалённых функций). Исправлено добавлением exclude в tsconfig. Не завершено — пользователь решил удалить.
+
+## Связанные страницы
+
+[[server-94-130-51-161]], [[mail-ca-ibm-org]]

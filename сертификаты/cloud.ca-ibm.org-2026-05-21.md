@@ -1,6 +1,10 @@
 ---
+title: cloud.ca-ibm.org — Let's Encrypt сертификат
 created: 2026-05-21
+updated: 2026-06-13
+type: entity
 tags: [сертификат, ssl, tls, issue-ca, 3x-ui]
+sources: []
 ---
 
 # cloud.ca-ibm.org — выпуск сертификата (2026-05-21)
@@ -53,3 +57,7 @@ systemctl restart x-ui
 - **Valid**: 2026-05-21 → 2027-05-19
 - **Service**: active (running), порт 443 LISTEN
 - **Modulus**: ключ и сертификат совпадают ✅
+
+## Связанные страницы
+
+[[pki-ca-ibm-org]], [[mail-ca-ibm-org]]

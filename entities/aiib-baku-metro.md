@@ -1,15 +1,11 @@
 ---
+title: AIIB — Baku Metro Expansion
+created: 2026-06-10
+updated: 2026-06-13
 type: entity
-name: aiib-baku-metro
-status: active
-tags: [aiib, baku, metro, azerbaijan, transport, monitoring]
-phase1: "Approved"
-phase1_funding: "USD 180 million"
-phase1_total_cost: "USD 212.4 million"
-phase2: "Proposed"
-phase2_funding: "USD 700 million"
-phase2_total_cost: "~USD 826.6 million"
-program_total: "USD 2.455 billion"
+tags: ["aiib", "baku", "metro", "azerbaijan", "transport", "infrastructure", "tender"]
+sources: []
+confidence: high
 ---
 
 # AIIB: Baku Metro Expansion Project 🇦🇿🚇
@@ -58,9 +54,14 @@ program_total: "USD 2.455 billion"
 - [[Baku-Metro-Phase-II]] — полная оцифровка
 - [Phase I на AIIB](https://www.aiib.org/en/projects/details/2025/approved/azerbaijan-baku-metro-expansion-project-phase-i.html)
 - [Project Document PDF (52 стр.)](https://www.aiib.org/en/projects/details/2026/_download/Azerbaijan/Republic-of-Azerbaijan-Baku-Metro-Expansion-Project-Phase-I.pdf)
-- Nextcloud: [[Baku-metro-Faza-1]] и [[Baku-metro-Faza-2]]
+- Nextcloud: [[Baku-Metro-Phase-I]] и [[Baku-Metro-Phase-II]]
 
 ## 🤖 Мониторинг
 - Ежедневно 9:00 UTC → скрипт + RSS
 - Навык: `aiib-baku-metro-monitor`
 - Последняя проверка: 2026-06-11 → без изменений
+
+## Связанные страницы
+
+- [[UNGM Parser]]
+- [[Парсер тендеров UNGM AIIB]]

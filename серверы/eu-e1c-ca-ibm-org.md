@@ -1,6 +1,11 @@
 ---
+title: eu-e1c.ca-ibm.org
 created: 2026-05-21
+updated: 2026-06-13
+type: entity
 tags: [сервер, windows, sql, 1c, mssql]
+sources: []
+confidence: medium
 ---
 
 # EU-E1C (eu-e1c.ca-ibm.org) — обзор
@@ -51,7 +56,7 @@ tags: [сервер, windows, sql, 1c, mssql]
 ### cai-it-inv-w (основная)
 - **Размер**: 1.5 GB, 1950 таблиц
 - **Система**: 1С:Предприятие 8.3 (платформа 8.3.13)
-- **Подробнее**: [[sql/cai-it-inv-w]]
+- **Подробнее**: [[cai-it-inv-w]]
 
 ### test
 - **Состояние**: пустая, не используется
@@ -63,3 +68,7 @@ tags: [сервер, windows, sql, 1c, mssql]
 | 1433 | MS SQL |
 | 3389 | RDP |
 | 5985 | WinRM HTTP |
+
+## Связанные страницы
+
+[[mail-ca-ibm-org]]

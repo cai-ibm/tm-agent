@@ -1,3 +1,12 @@
+---
+title: virtualization
+created: 2026-05-15
+updated: 2026-06-13
+type: entity
+tags: []
+sources: []
+confidence: medium
+---
 # virtualization
 
 **Категория:** devops
