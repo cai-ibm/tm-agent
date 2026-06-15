@@ -2,7 +2,7 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-> Обновлено: 2026-06-13 | Всего страниц: 39
+> Обновлено: 2026-06-15 | Всего страниц: 40
 
 ## Entities
 
@@ -20,6 +20,7 @@
 - [[ocerp-ca-ibm-org]] — OpenConstructionERP — удалён 26.05.2026
 - [[onlyoffice-docx-readonly]] — OnlyOffice .docx read-only: редактор не активируется
 - [[pki-ca-ibm-org]] — Двухуровневая PKI: Root-CA + Issue-CA, OCSP
+- [[scanopy-192-168-2-31]] — Scanopy: автоматическая документация сети (L2/L3/Workloads/Apps)
 - [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04): nginx, n8n, OnlyOffice DS
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3, OnlyOffice, ~2.5M файлов
