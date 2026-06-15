@@ -1,9 +1,9 @@
 ---
 title: Twenty CRM
 created: 2026-06-09
-updated: 2026-06-09
+updated: 2026-06-15
 type: entity
-tags: [crm, twenty, coolify, docker, postgres]
+tags: [crm, twenty, docker, postgres, nginx-proxy-manager]
 sources: []
 confidence: high
 ---
@@ -19,10 +19,10 @@ confidence: high
 | **Статус** | ✅ Опубликован через NPM (twenty.ca-ibm.org) |
 | **Сервер** | docker-host2 (192.168.2.31) |
 | **Метод** | Docker Compose вручную (`/opt/twenty/docker-compose.yml`) |
-| **Публичный доступ** | `http://twenty.ca-ibm.org` (через NPM на Докер1) |
+| **Публичный доступ** | `https://twenty.ca-ibm.org` (через NPM на Докер1) |
 | **Путь к compose** | `/opt/twenty/` |
-| **NPM proxy host ID** | 10 |
-| **Coolify UUID** | `jj2aht57z9ngybhk96zhwzcd` (предыдущие: `aj2...`, `mdq...`, `b5e...`) |
+| **NPM proxy host ID** | 10 (сертификат npm-23, Let's Encrypt) |
+| **Версия** | v2.11.0 |
 
 ## Контейнеры (Docker Compose)
 
@@ -46,19 +46,8 @@ confidence: high
 | NODE_PORT | 3000 |
 | PG_DATABASE_URL | `postgres://twenty:***@192.168.2.34:5433/twenty` |
 | REDIS_URL | `redis://redis:6379` |
-| SERVER_URL | `http://server:3000` |
 | ENCRYPTION_KEY | `twenty2024-encryption-key-32chars!!` |
-
-## База данных
-
-| Параметр | Значение |
-|----------|----------|
-| **Тип** | Supabase PG (192.168.2.34) |
-| **Порт** | 5433 (прямой socat-туннель, минуя supavisor) |
-| **База** | `twenty` |
-| **Пользователь** | `twenty` |
-| **Пароль** | `twenty2024` |
-| **Строка** | `postgres://twenty:***@192.168.2.34:5433/twenty` |
+| SERVER_URL | `https://twenty.ca-ibm.org` |
 
 ### Socat-туннель
 - Контейнер: `pg-direct-tunnel` на 192.168.2.34
@@ -69,12 +58,14 @@ confidence: high
 ## Доступ
 
 - **Локально:** `http://192.168.2.31:3000`
-- **Публично:** `http://twenty.ca-ibm.org` (через NPM на Докер1)
+- **Публично:** `https://twenty.ca-ibm.org` (через NPM на Докер1, SSL)
 - **NestJS** успешно стартует, миграции выполнены, 23 cron job зарегистрированы
 - При первом входе нужно зарегистрировать workspace
 
 ## История изменений
-- **15.06.2026** — Опубликован через NPM на Докер1: `http://twenty.ca-ibm.org` (proxy host id=10, HTTP без SSL)
+
+- **15.06.2026** — Исправлен Mixed Content: `SERVER_URL` изменён с `http://192.168.2.31:3000` на `https://twenty.ca-ibm.org`. Контейнер перезапущен.
+- **15.06.2026** — Опубликован через NPM на Докер1: `https://twenty.ca-ibm.org` (proxy host id=10, сертификат npm-23)
 - **09.06.2026 17:00** — Запущен вручную через Docker Compose (`/opt/twenty/`). HTTP 200.
 - **09.06.2026** — Попытки развернуть через Coolify API (3 итерации). Неудачно — маскировка пароля.
 - **09.06.2026** — Создан pg-direct-tunnel (порт 5433 → supabase-db:5432).
@@ -82,4 +73,4 @@ confidence: high
 
 ## Связанные страницы
 
-[[coolify-192-168-2-39]], [[server-94-130-51-161]]
+[[coolify-192-168-2-39]], [[server-94-130-51-161]], [[scanopy-192-168-2-31]]
