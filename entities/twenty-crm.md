@@ -16,10 +16,12 @@ confidence: high
 
 | Параметр | Значение |
 |----------|----------|
-| **Статус** | ✅ Запущен (HTTP 200) |
+| **Статус** | ✅ Опубликован через NPM (twenty.ca-ibm.org) |
 | **Сервер** | docker-host2 (192.168.2.31) |
 | **Метод** | Docker Compose вручную (`/opt/twenty/docker-compose.yml`) |
+| **Публичный доступ** | `http://twenty.ca-ibm.org` (через NPM на Докер1) |
 | **Путь к compose** | `/opt/twenty/` |
+| **NPM proxy host ID** | 10 |
 | **Coolify UUID** | `jj2aht57z9ngybhk96zhwzcd` (предыдущие: `aj2...`, `mdq...`, `b5e...`) |
 
 ## Контейнеры (Docker Compose)
@@ -67,10 +69,12 @@ confidence: high
 ## Доступ
 
 - **Локально:** `http://192.168.2.31:3000`
+- **Публично:** `http://twenty.ca-ibm.org` (через NPM на Докер1)
 - **NestJS** успешно стартует, миграции выполнены, 23 cron job зарегистрированы
 - При первом входе нужно зарегистрировать workspace
 
 ## История изменений
+- **15.06.2026** — Опубликован через NPM на Докер1: `http://twenty.ca-ibm.org` (proxy host id=10, HTTP без SSL)
 - **09.06.2026 17:00** — Запущен вручную через Docker Compose (`/opt/twenty/`). HTTP 200.
 - **09.06.2026** — Попытки развернуть через Coolify API (3 итерации). Неудачно — маскировка пароля.
 - **09.06.2026** — Создан pg-direct-tunnel (порт 5433 → supabase-db:5432).
