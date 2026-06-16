@@ -2,7 +2,7 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-> Обновлено: 2026-06-15 | Всего страниц: 40
+> Обновлено: 2026-06-15 | Всего страниц: 41
 
 ## Entities
 
@@ -12,6 +12,7 @@
 - [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума 18.05.2026
 - [[doc-ca-ibm-org]] — Paperless-ngx: документооборот, OCR, хранение
 - [[drawdb-ca-ibm-org]] — drawDB: онлайн-редактор ER-диаграмм и SQL-генератор
+- [[ht2-vpn-188-124-56-126]] — HT2: WG Easy VPN, ежедневная перезагрузка в 00:00
 - [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files → /mnt/ibt-nfs (32T)
 - [[interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh на WordPress/Coolify
 - [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening
