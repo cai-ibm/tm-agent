@@ -203,3 +203,10 @@
 - Инвентаризация: 7 QEMU/KVM VM (running), 7 shut off, 12 LXC (running), 9 stopped, 2 Docker
 - Обновлён index.md: 41 → 42 страницы
 - Источник: прямой SSH на cai-main-b2-tm (sobolevrv@192.168.30.12)
+
+## [2026-06-16] check | Ежедневная проверка — обновления: Stargate Log Monitor
+- Создана страница: [[monitoring/stargate-log-monitor]] — новый мониторинг лога Nextcloud
+- Обновлён [[aiib-baku-metro]]: +автообновление даты проверки на Nextcloud, bumped updated
+- Обновлён [[monitoring/index]]: +Stargate Log Monitor и AIIB Baku Metro в таблицу
+- Обновлён [[index]]: 42 → 43 страницы, +stargate-log-monitor
+- Источники: сессии 2026-06-16 (Stargate script fix + AIIB дата обновления)

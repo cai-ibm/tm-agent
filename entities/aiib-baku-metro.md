@@ -1,7 +1,7 @@
 ---
 title: AIIB — Baku Metro Expansion
 created: 2026-06-10
-updated: 2026-06-13
+updated: 2026-06-16
 type: entity
 tags: ["aiib", "baku", "metro", "azerbaijan", "transport", "infrastructure", "tender"]
 sources: []
@@ -59,6 +59,7 @@ confidence: high
 ## 🤖 Мониторинг
 - Ежедневно 9:00 UTC → скрипт + RSS
 - Навык: `aiib-baku-metro-monitor`
+- Автообновление даты проверки на Nextcloud (через `nc_get` + `nc_put`)
 - Последняя проверка: 2026-06-11 → без изменений
 
 ## Связанные страницы

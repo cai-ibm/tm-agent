@@ -1,12 +1,13 @@
 ---
 title: Мониторинг — сводка
 created: 2026-05-15
-updated: 2026-06-13
+updated: 2026-06-16
 type: entity
 tags: ["monitoring"]
 sources: []
 confidence: high
 ---
+
 ## Мониторинг
 
 Сводка всех систем мониторинга, которые автоматизированы через Hermes Agent.
@@ -15,8 +16,9 @@ confidence: high
 
 | Источник | Тип | Расписание | Статус |
 |----------|-----|------------|--------|
-| [[UNGM Parser|UNGM Parser]] | Тендеры ООН (строительство) | пн–пт 12:00 UTC | ✅ Работает |
-| *(добавить)* | | | |
+| [[UNGM Parser\|UNGM Parser]] | Тендеры ООН (строительство) | пн–пт 12:00 UTC | ✅ Работает |
+| [[aiib-baku-metro\|AIIB Baku Metro]] | Проекты AIIB (Баку метро) | пн–пт 11:00 UTC | ✅ Работает |
+| [[monitoring/stargate-log-monitor\|Stargate Log Monitor]] | Лог Nextcloud | каждые 2 часа | ✅ Работает |
 
 ### План развития
 
@@ -29,3 +31,4 @@ confidence: high
 
 - [[monitoring/Парсер тендеров UNGM AIIB]]
 - [[aiib-baku-metro]]
+- [[monitoring/stargate-log-monitor]]
