@@ -2,11 +2,12 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-> Обновлено: 2026-06-15 | Всего страниц: 41
+> Обновлено: 2026-06-16 | Всего страниц: 42
 
 ## Entities
 
 - [[aiib-baku-metro]] — AIIB: Baku Metro Expansion (Phase I Approved, Phase II Proposed)
+- [[Инвентаризация/cai-main-b2-tm]] — Сервер виртуализации (QEMU/KVM, LXC, Docker), 7 VM + 12 LXC + 2 Docker
 - [[claude-code-container]] — Docker-контейнер Claude Code CLI на hermes-eu
 - [[coolify-192-168-2-39]] — WordPress-сайт на 192.168.2.39, проксируется через NPM
 - [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума 18.05.2026
