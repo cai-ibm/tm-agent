@@ -1,7 +1,7 @@
 ---
 title: Stargate Log Monitor
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-06-19
 type: entity
 tags: [monitoring, stargate, nextcloud, logs, script, cron]
 sources: []
@@ -59,8 +59,9 @@ stargate (94.130.51.147)                    Hermes Agent
 
 ## История
 
-- **2026-06-16 11:45** — создан скрипт `stargate-log-monitor.py`, обёртка, cron (первая версия, no_agent)
+- **2026-06-19** — Лог вырос до 17 ГБ; SSH с `Superp@ss2020root` работает, скрипт на stargate зависает (логика анализа читает весь файл ≈17 ГБ в память). Ошибки SMB 6-8 за час (level≥3), предупреждения unscanned files (level=2). Deprecations 5 000-7 200, dirty reads 900-4 000 за 10k строк.
 - **2026-06-16 18:01** — cron пересоздан с agent-driven доставкой (предыдущая версия падала с error)
+- **2026-06-16 11:45** — создан скрипт `stargate-log-monitor.py`, обёртка, cron (первая версия, no_agent)
 
 ## Связанные страницы
 

@@ -1,7 +1,7 @@
 ---
 title: Мониторинг — сводка
 created: 2026-05-15
-updated: 2026-06-16
+updated: 2026-06-19
 type: entity
 tags: ["monitoring"]
 sources: []
