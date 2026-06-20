@@ -1,7 +1,7 @@
 ---
 title: stargate.ca-ibm.org (Nextcloud)
 created: 2026-05-15
-updated: 2026-06-19
+updated: 2026-06-20
 type: entity
 tags: [server, nextcloud, onlyoffice, service, storage, database, apache, letsencrypt, redis, mariadb]
 sources: [raw/memory/agent-knowledge-2026-05-15.md]
@@ -70,6 +70,12 @@ SSL-конфиг включает Timeout 600, KeepAlive On.
 - Анализ последних 500+ строк через SSH с `Superp@ss2020root` — сотни `dirty table reads` в MariaDB
 - Лог растёт: за последние 48 часов с ~72 MB → 101 MB → 17 ГБ (резкий скачок вечером 18.06)
 - **Проблема:** стандартный Python-скрипт анализа зависает при чтении всего файла
+
+### Доступность сервера (20.06.2026)
+
+- **08:00 UTC** — SSH таймаут (60с), сервер не отвечает по SSH
+- Причины: сервер выключен/перезагружается, смена IP, или SSH-демон завис
+- Требуется ручная проверка доступности
 
 ## Хранилище
 
