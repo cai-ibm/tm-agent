@@ -1,7 +1,7 @@
 ---
 title: Stargate Log Monitor
 created: 2026-06-16
-updated: 2026-06-20
+updated: 2026-06-21
 type: entity
 tags: [monitoring, stargate, nextcloud, logs, script, cron]
 sources: []
@@ -59,6 +59,8 @@ stargate (94.130.51.147)                    Hermes Agent
 
 ## История
 
+- **2026-06-21 08:02** — **Мониторинг отключён пользователем** (cron paused). Причина: сервер stargate недоступен, скрипт не может выполниться.
+- **2026-06-21 06:00–08:00** — SSH-соединение со stargate обрывается на этапе аутентификации (Connection timed out during banner exchange). Порт 22 открыт, хост пингуется. Вероятная причина: зависший SSH-демон или fail2ban/rate-limit.
 - **2026-06-20 08:00** — **Сервер недоступен по SSH** (таймаут 60с). Скрипт мониторинга не может соединиться со stargate. Требуется ручная проверка.
 - **2026-06-19** — Лог вырос до 17 ГБ; SSH с `Superp@ss2020root` работает, скрипт на stargate зависает (логика анализа читает весь файл ≈17 ГБ в память). Ошибки SMB 6-8 за час (level≥3), предупреждения unscanned files (level=2). Deprecations 5 000-7 200, dirty reads 900-4 000 за 10k строк.
 - **2026-06-16 18:01** — cron пересоздан с agent-driven доставкой (предыдущая версия падала с error)
