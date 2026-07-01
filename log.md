@@ -342,6 +342,6 @@
 - Созданы страницы 4 основных хостов с присвоением имён:
   - [[hermes-host-192-168-2-34]] — hermes-host (Hermes Agent, Supabase, NFS)
   - [[hz-host1-192-168-2-37]] — hz-host1 (n8n, NPM, OnlyOffice, Paperless)
-  - [[docker-host2-192-168-2-31]] — docker-host2 (Twenty, Scanopy, Coolify Traefik)
+  - [[hz-host2-192-168-2-31]] — hz-host2 (Twenty, Scanopy, Coolify Traefik)
   - [[coolify-wordpress-192-168-2-39]] — coolify(wordpress) (Coolify)
 - Обновлён [[index.md]]: 44 → 48 страниц
