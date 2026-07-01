@@ -18,7 +18,7 @@
 - [[hermes-host-192-168-2-34]] — hermes-host (192.168.2.34): Hermes Agent, Supabase, NFS
 - [[ht2-vpn-188-124-56-126]] — HT2: WG Easy VPN, ежедневная перезагрузка в 00:00
 - [[hz-host1-192-168-2-37]] — hz-host1 (192.168.2.37): n8n, NPM, OnlyOffice, Paperless
-- [[hz-host2-192-168-2-39]] — hz-host2 (192.168.2.39): Coolify, управление деплоями
+- [[coolify-wordpress-192-168-2-39]] — coolify(wordpress) (192.168.2.39): Coolify, управление деплоями
 - [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files → /mnt/ibt-nfs (32T)
 - [[interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh на WordPress/Coolify
 - [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening

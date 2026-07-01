@@ -1,13 +1,13 @@
 ---
-title: hz-host2 (192.168.2.39)
+title: coolify-wordpress (192.168.2.39)
 created: 2026-06-30
 updated: 2026-06-30
 type: entity
-tags: [server, coolify, hetzner]
+tags: [server, coolify, wordpress, hetzner]
 confidence: medium
 ---
 
-# hz-host2 — 192.168.2.39
+# coolify(wordpress) — 192.168.2.39
 
 Хост, на котором работает Coolify. В Coolify значится как `localhost` (сервер `rozgvuhcq`).
 
@@ -21,7 +21,7 @@ confidence: medium
 
 - **Версия:** 4.1.1
 - **Прокси:** Traefik v3.6 (остановлен)
-- **Серверы в Coolify:** localhost (сам hz-host2) + docker-host2 (192.168.2.31)
+- **Серверы в Coolify:** localhost (сам хост) + docker-host2 (192.168.2.31)
 - **Проекты:** CAI (2 сервиса)
 
 ## Связанные страницы
