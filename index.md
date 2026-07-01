@@ -2,7 +2,7 @@
 
 > Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
 > Читать первым при любом query.
-> Обновлено: 2026-06-28 | Всего страниц: 44
+> Обновлено: 2026-06-30 | Всего страниц: 48
 
 ## Entities
 
@@ -13,8 +13,12 @@
 - [[dc-192-168-2-2]] — Domain Controller (AD, домен cai), полный аудит 26.06.2026
 - [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума 18.05.2026
 - [[doc-ca-ibm-org]] — Paperless-ngx: документооборот, OCR, хранение
+- [[docker-host2-192-168-2-31]] — docker-host2 (192.168.2.31): Twenty, Scanopy, Coolify Traefik
 - [[drawdb-ca-ibm-org]] — drawDB: онлайн-редактор ER-диаграмм и SQL-генератор
+- [[hermes-host-192-168-2-34]] — hermes-host (192.168.2.34): Hermes Agent, Supabase, NFS
 - [[ht2-vpn-188-124-56-126]] — HT2: WG Easy VPN, ежедневная перезагрузка в 00:00
+- [[hz-host1-192-168-2-37]] — hz-host1 (192.168.2.37): n8n, NPM, OnlyOffice, Paperless
+- [[hz-host2-192-168-2-39]] — hz-host2 (192.168.2.39): Coolify, управление деплоями
 - [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files → /mnt/ibt-nfs (32T)
 - [[interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh на WordPress/Coolify
 - [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening
