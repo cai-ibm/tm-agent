@@ -180,5 +180,5 @@ HKLM\SYSTEM\CurrentControlSet\Services\HTTP\Parameters
 
 - [[mail-ca-ibm-org]] — Exchange Server 2019, MAIL-SRV1
 - [[exchange-extended-protection]] — Extended Protection (EPA)
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (мог бы скрывать заголовки через L7, но Exchange убран)
+-  — Nginx Proxy Manager (мог бы скрывать заголовки через L7, но Exchange убран)
 - [[server-94-130-51-161]] — Hetzner, внешний IP для NAT

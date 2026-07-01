@@ -37,4 +37,4 @@ confidence: high
 
 ## Связанные страницы
 
-[[claude-code-container]], [[supabase-192-168-2-34]], [[server-94-130-51-161]]
+[[claude-code-container]], [[192-168-2-34-supabase]], [[server-94-130-51-161]]

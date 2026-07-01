@@ -69,4 +69,4 @@ confidence: high
 ## Связанные сущности
 
 - [[server-94-130-51-161]] — сервер, на котором работает drawDB
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager
+-  — Nginx Proxy Manager

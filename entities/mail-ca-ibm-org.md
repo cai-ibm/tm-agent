@@ -107,7 +107,7 @@ NPM обслуживает только techbau.org.
 - [[smtp-relay-ca-ibm]] — SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud
 - [[server-94-130-51-161]] — Hetzner, nginx
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager (только для HTTP-сервисов)
+-  — Nginx Proxy Manager (только для HTTP-сервисов)
 - [[exchange-iis-headers]] — Управление HTTP-заголовками через IIS URL Rewrite
 - [[exchange-extended-protection]] — Extended Protection (EPA)
 

@@ -9,28 +9,26 @@
 - [[aiib-baku-metro]] — AIIB: Baku Metro Expansion (Phase I Approved, Phase II Proposed)
 - [[Инвентаризация/cai-main-b2-tm]] — Сервер виртуализации (QEMU/KVM, LXC, Docker), 7 VM + 12 LXC + 2 Docker
 - [[claude-code-container]] — Docker-контейнер Claude Code CLI на hermes-eu
-- [[coolify-wordpress-192-168-2-39]] — coolify(wordpress) (192.168.2.39): Coolify, WordPress
-- [[dc-192-168-2-2]] — Domain Controller (AD, домен cai), полный аудит 26.06.2026
+- [[192-168-2-39-coolify-wordpress]] — coolify(wordpress) (192.168.2.39): Coolify, WordPress
+- [[192-168-2-2-dc]] — Domain Controller (AD, домен cai), полный аудит 26.06.2026
 - [[dag01-recovery-2026-05-18]] — Восстановление DAG01 после потери кворума 18.05.2026
 - [[doc-ca-ibm-org]] — Paperless-ngx: документооборот, OCR, хранение
 - [[drawdb-ca-ibm-org]] — drawDB: онлайн-редактор ER-диаграмм и SQL-генератор
-- [[hermes-host-192-168-2-34]] — hermes-host (192.168.2.34): Hermes Agent, Supabase, NFS
-- [[ht2-vpn-188-124-56-126]] — HT2: WG Easy VPN, ежедневная перезагрузка в 00:00
-- [[hz-host1-192-168-2-37]] — hz-host1 (192.168.2.37): n8n, NPM, OnlyOffice, Paperless
-- [[hz-host2-192-168-2-31]] — hz-host2 (192.168.2.31): Twenty, Scanopy, Coolify Traefik
+- [[192-168-2-34-hermes-host]] — hermes-host (192.168.2.34): Hermes Agent, Supabase, NFS
+- [[188-124-56-126-ht2-vpn]] — HT2: WG Easy VPN, ежедневная перезагрузка в 00:00
+- [[192-168-2-37-hz-host1]] — hz-host1 (192.168.2.37): n8n, NPM, OnlyOffice, Paperless
+- [[192-168-2-31-hz-host2]] — hz-host2 (192.168.2.31): Twenty, Scanopy, Coolify Traefik
 - [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files → /mnt/ibt-nfs (32T)
 - [[interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh на WordPress/Coolify
 - [[mail-ca-ibm-org]] — Exchange Server 2019 CU15 (MAIL-SRV1), standalone, прямой NAT, hardening
-- [[mikrotik-192-168-100-254]] — MikroTik RouterOS 7.19.3, основной шлюз
-- [[nginx-pm-192-168-2-31]] — Nginx Proxy Manager, только techbau.org
+- [[192-168-100-254-mikrotik]] — MikroTik RouterOS 7.19.3, основной шлюз
 - [[ocerp-ca-ibm-org]] — OpenConstructionERP — удалён 26.05.2026
 - [[onlyoffice-docx-readonly]] — OnlyOffice .docx read-only: редактор не активируется
 - [[pki-ca-ibm-org]] — Двухуровневая PKI: Root-CA + Issue-CA, OCSP
-- [[scanopy-192-168-2-31]] — Scanopy: автоматическая документация сети (L2/L3/Workloads/Apps)
-- [[server-94-130-51-161]] — Hetzner VPS (Ubuntu 24.04): nginx, n8n, OnlyOffice DS
+- [[192-168-2-31-scanopy]] — Scanopy: автоматическая документация сети (L2/L3/Workloads/Apps)
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3, OnlyOffice, ~2.5M файлов
-- [[supabase-192-168-2-34]] — Self-hosted Supabase на hermes-eu
+- [[192-168-2-34-supabase]] — Self-hosted Supabase на hermes-eu
 - [[twenty-crm]] — Twenty CRM на Coolify
 
 ## Concepts
