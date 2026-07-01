@@ -1,7 +1,7 @@
 ---
 title: Claude Code Container
 created: 2026-05-19
-updated: 2026-05-19
+updated: 2026-06-30
 type: entity
 tags: [docker, claude-code, container, ai-agent]
 sources: []
@@ -25,6 +25,10 @@ confidence: high
 | Рабочая директория | `/workspace` |
 | Restart policy | `unless-stopped` |
 | Dockerfile | `/workspace/claude-code-docker/Dockerfile` (в контейнере Hermes) |
+
+## Доступ
+
+SSH через ключ `id_ed25519`, пользователь `cai@192.168.2.34`. Пароль `sudo` не настроен — команды от пользователя `cai` (в группе `docker`).
 
 ## Команды управления
 
