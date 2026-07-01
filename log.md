@@ -334,16 +334,6 @@
 - Memory: недоступна в cron-окружении
 - Других изменений инфраструктуры не обнаружено
 
-## [2026-06-30] update | Доступ к hermes-eu, подготовка FCC + Ollama
+## [2026-06-30] update | Доступ к hermes-eu
 - Добавлен SSH-ключ Hermes-контейнера на hermes-eu (192.168.2.34) для пользователя cai
 - Обновлена страница [[claude-code-container]] — добавлен раздел "Доступ"
-- Планируется: установка free-claude-code прокси + подключение Ollama Cloud к Claude Code CLI
-
-## [2026-06-30] deploy | FCC + Ollama Cloud для Claude Code CLI
-- Установлен free-claude-code v2.4.1 на hermes-eu
-- Пропатчены 3 файла FCC для работы с Ollama Cloud (OpenAI Chat Completions вместо Anthropic Messages)
-- FCC-сервер запущен на порту 8082, модель `ollama/kimi-k2.7-code`
-- Контейнер `claude-code` пересоздан с ANTHROPIC_BASE_URL=http://172.17.0.1:8082
-- Claude Code работает через FCC → Ollama Cloud (проверено: ответ "Hello", написал скрипт Фибоначчи)
-- Создан навык [[fcc-ollama-cloud]] (mlops)
-- Обновлена страница [[claude-code-container]] — раздел FCC + Ollama Cloud
