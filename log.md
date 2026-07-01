@@ -345,3 +345,7 @@
   - [[hz-host2-192-168-2-31]] — hz-host2 (Twenty, Scanopy, Coolify Traefik)
   - [[coolify-wordpress-192-168-2-39]] — coolify(wordpress) (Coolify)
 - Обновлён [[index.md]]: 44 → 48 страниц
+
+## [2026-06-30] cleanup | Устранение дубликатов в Obsidian
+- Удалены дублирующиеся страницы: `coolify-192-168-2-39.md` (заменена на coolify-wordpress), `server-94-130-51-161.md` (заменена на hz-host1)
+- Обновлён [[index.md]]: 48 → 46 страниц
