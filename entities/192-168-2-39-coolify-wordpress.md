@@ -1,7 +1,7 @@
 ---
 title: coolify-wordpress (192.168.2.39)
 created: 2026-06-30
-updated: 2026-06-30
+updated: 2026-07-01
 type: entity
 tags: [server, coolify, wordpress, hetzner]
 confidence: medium
@@ -23,6 +23,13 @@ confidence: medium
 - **Прокси:** Traefik v3.6 (остановлен)
 - **Серверы в Coolify:** localhost (сам хост) + docker-host2 (192.168.2.31)
 - **Проекты:** CAI (2 сервиса)
+
+## Docker Engine Metrics
+
+- **Порт:** 9323 (Docker Engine metrics)
+- **docker-exporter:** запущен, собирает метрики контейнеров с именами
+- **Prometheus job:** `docker-exporter-coolify` (192.168.2.39:9323)
+- **Статус:** ✅ UP (все 11 контейнеров мониторятся)
 
 ## Связанные страницы
 

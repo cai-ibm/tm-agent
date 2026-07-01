@@ -64,7 +64,12 @@ confidence: high
 - `hermes-host` — локальный (192.168.2.34)
 - `hz-host1` — 192.168.2.37
 - `hz-host2` — 192.168.2.31
+- `coolify` — 192.168.2.39 (11 контейнеров)
+
+**Всего:** 4 хоста, 52 контейнера под мониторингом.
+
+**Дашборд MS SQL Server (eu-e1c):** UID `abstn5` — I/O stall, wait stats, buffer pool, log growths, PLE.
 
 ## Связанные страницы
 
-[[claude-code-container]], [[192-168-2-34-supabase]], [[server-94-130-51-161]]
+[[claude-code-container]], [[192-168-2-34-supabase]], [[192-168-2-37-hz-host1]]

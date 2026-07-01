@@ -1,7 +1,7 @@
 ---
 title: eu-e1c.ca-ibm.org
 created: 2026-05-21
-updated: 2026-06-13
+updated: 2026-07-01
 type: entity
 tags: [сервер, windows, sql, 1c, mssql]
 sources: []
@@ -68,6 +68,13 @@ confidence: medium
 | 1433 | MS SQL |
 | 3389 | RDP |
 | 5985 | WinRM HTTP |
+
+## Мониторинг MS SQL Server
+
+- **Prometheus exporter:** mssql-exporter на hermes-host (192.168.2.34)
+- **Grafana дашборд:** «MS SQL Server — eu-e1c» (UID: `abstn5`)
+- **Метрики:** 31 метрика — I/O stall, wait stats, buffer pool, log growths, PLE, connections, deadlocks, блокировки, память, размеры БД
+- **Источник данных:** Prometheus (mssql-exporter → 192.168.2.35:1433)
 
 ## Связанные страницы
 

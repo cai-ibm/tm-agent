@@ -1,7 +1,7 @@
 ---
 title: Мониторинг — сводка
 created: 2026-05-15
-updated: 2026-06-21
+updated: 2026-07-01
 type: entity
 tags: ["monitoring"]
 sources: []
@@ -19,6 +19,7 @@ confidence: high
 | [[UNGM Parser\|UNGM Parser]] | Тендеры ООН (строительство) | пн–пт 12:00 UTC | ✅ Работает |
 | [[aiib-baku-metro\|AIIB Baku Metro]] | Проекты AIIB (Баку метро) | пн–пт 11:00 UTC | ✅ Работает |
 | [[monitoring/stargate-log-monitor\|Stargate Log Monitor]] | Лог Nextcloud | каждые 2 часа | ⏸️ Отключён (21.06) |
+| [[серверы/eu-e1c-ca-ibm-org\|MS SQL Server (eu-e1c)]] | SQL Server мониторинг | real-time (Prometheus) | ✅ Работает (Grafana UID: abstn5) |
 
 ### План развития
 

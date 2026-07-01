@@ -2,7 +2,7 @@
 title: drawDB (drawdb.ca-ibm.org)
 aliases: [drawDB, drawdb]
 created: 2026-06-13
-updated: 2026-06-13
+updated: 2026-07-01
 type: entity
 tags: [service, docker, database, erd, sql]
 sources: []
@@ -11,7 +11,7 @@ confidence: high
 
 # drawDB (drawdb.ca-ibm.org)
 
-Бесплатный онлайн-редактор ER-диаграмм и SQL-генератор. Запущен в Docker на [[server-94-130-51-161|Докер1]] за Nginx Proxy Manager.
+Бесплатный онлайн-редактор ER-диаграмм и SQL-генератор. Запущен в Docker на [[192-168-2-37-hz-host1|hz-host1]] за Nginx Proxy Manager.
 
 ## Основные параметры
 
@@ -26,8 +26,8 @@ confidence: high
 
 | Параметр | Значение |
 |----------|----------|
-| **Сервер** | [[server-94-130-51-161|Докер1]] (94.130.51.161) |
-| **Стек** | `/opt/drawdb/docker-compose.yml` |
+| **Сервер** | [[192-168-2-37-hz-host1|hz-host1]] (192.168.2.37) |
+| **Стек** | `/root/drawdb/docker-compose.yml` |
 | **Контейнер** | `drawdb` — собран из исходников |
 | **Внутренний порт** | `127.0.0.1:3001` → 80 (в контейнере) |
 | **Restart policy** | `unless-stopped` |
@@ -61,12 +61,12 @@ confidence: high
 
 ## Развёртывание
 
-Клонирован репозиторий → `docker compose build` → `docker compose up -d` на Докер1.
+Клонирован репозиторий → `docker compose build` → `docker compose up -d` на hz-host1.
 
 **Построено:** 2026-06-13
 **Теги:** нет (только последний коммит из main)
 
 ## Связанные сущности
 
-- [[server-94-130-51-161]] — сервер, на котором работает drawDB
--  — Nginx Proxy Manager
+- [[192-168-2-37-hz-host1]] — сервер, на котором работает drawDB
+- [[192-168-2-37-hz-host1#Nginx Proxy Manager]] — NPM на том же хосте
