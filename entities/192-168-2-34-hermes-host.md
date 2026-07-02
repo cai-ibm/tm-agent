@@ -1,7 +1,7 @@
 ---
 title: hermes-host (192.168.2.34)
 created: 2026-06-30
-updated: 2026-07-01
+updated: 2026-07-02
 type: entity
 tags: [server, hermes, docker, supabase, nfs, monitoring]
 confidence: high
@@ -59,6 +59,7 @@ confidence: high
 - `Хосты — Мониторинг ресурсов` (UID: `aj7rdx`) — CPU/RAM/Disk/Network по всем хостам (фильтр по имени хоста)
 - `Node Exporter Full` (ID 1860) — детальные метрики хостов
 - `Docker and Host Monitoring w/ Prometheus` (ID 179) — контейнерные метрики
+- `Контейнеры — Мониторинг` (UID: `a47xgn`) — добавлен фильтр **State** (All/Running/Stopped), версия 7. Фильтр стоит первым, выбор контейнера зависит от выбранного state.
 
 **Мониторимые хосты:**
 - `hermes-host` — локальный (192.168.2.34)

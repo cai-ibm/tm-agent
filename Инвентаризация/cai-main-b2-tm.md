@@ -1,7 +1,7 @@
 ---
 title: cai-main-b2-tm — сервер виртуализации
 created: 2026-06-16
-updated: 2026-06-16
+updated: 2026-07-02
 type: entity
 tags: [server, vm, container, lxc, docker, inventory]
 sources: []
@@ -26,7 +26,12 @@ confidence: high
 | Uptime | 36 дней (на 2026-06-16) |
 | Load | ~16.8 |
 
----
+## KVM Exporter (uptime fix)
+
+**Дата:** 2026-07-02
+**Проблема:** На Ubuntu 24.04 `virsh dominfo` не выводит строку `Uptime`. Скрипт `/usr/local/bin/kvm-lxc-exporter.sh` искал её через grep, не находил и писал 0 для всех ВМ.
+**Решение:** Расчёт uptime через PID qemu-процесса (`pgrep -f "guest=$vm"` → `stat /proc/$pid`). Все работающие ВМ показывают ~11 дней uptime.
+**Grafana:** Дашборд `a9q2qb` (asb-ocj — виртуализация KVM+LXC), панель KVM VMs — Uptime (days), версия 12.
 
 ## QEMU/KVM — 7 RUNNING + 7 SHUT OFF
 
