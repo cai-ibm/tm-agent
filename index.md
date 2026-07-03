@@ -27,6 +27,7 @@
 - [[pki-ca-ibm-org]] — Двухуровневая PKI: Root-CA + Issue-CA, OCSP
 - [[192-168-2-31-scanopy]] — Scanopy: автоматическая документация сети (L2/L3/Workloads/Apps)
 - [[smtp-relay-ca-ibm]] — Анонимный SMTP-релей 192.168.2.50:2526
+- [[bookstack-ca-ibm-org]] — BookStack: корпвикипедия, LDAP-аутентификация через AD
 - [[stargate-ca-ibm-org]] — Nextcloud 32.0.9, S3, OnlyOffice, ~2.5M файлов
 - [[192-168-2-34-supabase]] — Self-hosted Supabase на hermes-eu
 - [[twenty-crm]] — Twenty CRM на Coolify
