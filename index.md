@@ -1,49 +1,72 @@
 # Wiki Index
 
-> Каталог страниц. Создано Hermes Agent.
+> Каталог страниц. Каждая страница вики — с ссылкой и кратким описанием.
+> Читать первым при любом query.
 > Обновлено: 2026-07-03
 
 ## Entities
 
-- [[aiib-baku-metro]] — AIIB: Baku Metro Expansion
-- [[claude-code-container]] — Docker-контейнер Claude Code CLI
-- [[doc-ca-ibm-org]] — Paperless-ngx: документооборот
-- [[ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files
-- [[interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh
-- [[ocerp-ca-ibm-org]] — OpenConstructionERP (удалён 26.05.2026)
-- [[onlyoffice-docx-readonly]] — OnlyOffice .docx read-only
-- [[pki-ca-ibm-org]] — Двухуровневая PKI
-- [[twenty-crm]] — Twenty CRM на Coolify
-- [[bookstack-ca-ibm-org]] — BookStack: корпвикипедия, LDAP через AD
-- [[192-168-2-34-supabase]] — Self-hosted Supabase
+- [[entities/aiib-baku-metro]] — AIIB: Baku Metro Expansion
+- [[entities/bookstack-ca-ibm-org]] — BookStack: корпвикипедия, LDAP через AD
+- [[entities/claude-code-container]] — Docker-контейнер Claude Code CLI
+- [[entities/doc-ca-ibm-org]] — Paperless-ngx: документооборот
+- [[entities/ibt-files-nfs]] — NFS-шара 192.168.3.253:/IBT-files
+- [[entities/interbudmontazh-ch]] — Сайт-портфолио Interbudmontazh
+- [[entities/ocerp-ca-ibm-org]] — OpenConstructionERP (удалён)
+- [[entities/onlyoffice-docx-readonly]] — OnlyOffice .docx read-only
+- [[entities/pki-ca-ibm-org]] — Двухуровневая PKI
+- [[entities/sdek-proxy]] — СДЭК, доверенность на получение
+- [[entities/server-188-124-56-126]] — Дополнительный сервер
+- [[entities/server-asb-07d-esxi]] — ESXi хост asb-07d
+- [[entities/server-asb-0cj]] — Сервер виртуализации asb-0cj
+- [[entities/server-eu-e1c-ca-ibm-org]] — Сервер EU E1C
+- [[entities/supabase-192-168-2-34]] — Self-hosted Supabase
+- [[entities/tmcell-accounts]] — TMCELL аккаунты
+- [[entities/tmcell-k3-64602289]] — TMCELL К3 (64602289)
+- [[entities/twenty-crm]] — Twenty CRM на Coolify
 
 ## Concepts
 
-- [[Baku-Metro-Phase-I]] — Baku Metro Phase I
-- [[Baku-Metro-Phase-II]] — Baku Metro Phase II
-- [[exchange-iis-headers]] — HTTP-заголовки Exchange через IIS URL Rewrite
+- [[concepts/baku-metro-phase-i]] — Baku Metro Phase I
+- [[concepts/baku-metro-phase-ii]] — Baku Metro Phase II
+- [[concepts/exchange-iis-headers]] — HTTP-заголовки Exchange
+- [[concepts/hermes-agent]] — Hermes Agent: конфигурация и возможности
+- [[concepts/kvm-virtual-machines]] — KVM виртуальные машины
+- [[concepts/messaging-gateway]] — Messaging Gateway
+- [[concepts/network-subnets]] — Сеть и подсети
+- [[concepts/obsidian-vault]] — Obsidian Vault: структура и работа
+
+## Comparisons
+
+*(пусто — новые сравнения будут появляться здесь)*
+
+## Queries
+
+*(пусто — результаты запросов будут сохраняться здесь)*
 
 ## Мониторинг
 
 - [[monitoring/index|Мониторинг — сводка]]
+- [[monitoring/tmcell-monitoring]] — TMCELL мониторинг
 - [[monitoring/UNGM Parser]] — мониторинг тендеров ООН
 - [[monitoring/Парсер тендеров UNGM AIIB]] — Парсер тендеров UNGM/AIIB
 
-## Серверы
-
-- [[серверы/188-124-56-126]] — Дополнительный сервер
-- [[серверы/eu-e1c-ca-ibm-org]] — Сервер EU E1C
-
 ## Сертификаты
 
-- [[сертификаты/cloud.ca-ibm.org-2026-05-21]] — Let's Encrypt сертификат
+- [[certificates/cloud-ca-ibm-org-2026-05-21]] — Let's Encrypt сертификат
 
 ## SQL
 
 - [[sql/cai-it-inv-w]] — SQL-запрос инвентаризации ИТ
 
-## Прочее
+## Инвентаризация
 
-- [[СДЭК и доверенность]] — СДЭК, доверенность на получение
+- [[inventory/cai-main-b2-tm]] — Инвентаризация сервера cai-main-b2-tm
+
+## Скрипты
+
 - [[scripts/exchange-cert-renew-script]] — Скрипт обновления сертификата Exchange
-- [[Инвентаризация/cai-main-b2-tm]] — Инвентаризация сервера cai-main-b2-tm
+
+## Навыки
+
+- [[skills/index|Навыки Hermes — сводка]]
