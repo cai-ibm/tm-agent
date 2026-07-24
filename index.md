@@ -35,6 +35,7 @@
 - [[concepts/messaging-gateway]] — Messaging Gateway
 - [[concepts/network-subnets]] — Сеть и подсети
 - [[concepts/obsidian-vault]] — Obsidian Vault: структура и работа
+- [[concepts/pfsense-captive-portal]] — pfSense Captive Portal: настройка гостевой сети CAI Free
 
 ## Comparisons
 
