@@ -1,7 +1,7 @@
 ---
 title: pfSense Captive Portal — настройка гостевой сети
 created: 2026-07-24
-updated: 2026-07-24
+updated: 2026-07-25
 type: concept
 tags: [network, firewall, howto, troubleshooting]
 confidence: high
@@ -190,6 +190,8 @@ cat portal.html | sed \
 
 **Проблема:** В JavaScript кнопка отключается (`btn.disabled = true`) перед отправкой. Отключённая кнопка (`<button disabled>`) не отправляет форму.
 
+**Симптомы:** Пользователь нажимает «Подключиться», видит спиннер, но авторизация не происходит. В логах портала ничего нет.
+
 **Решение:** Не отключать кнопку, а просто вызвать `form.submit()`:
 ```javascript
 btn.addEventListener('click', (e) => {
@@ -197,6 +199,13 @@ btn.addEventListener('click', (e) => {
     form.submit();  // вместо btn.disabled = true
 });
 ```
+
+**Применение на pfSense:**
+1. Извлечь base64 из `<htmltext>` в `/conf/config.xml`
+2. Декодировать, заменить JS, закодировать обратно
+3. Обновить конфиг: `sed -i "" "s|<htmltext>OLD</htmltext>|<htmltext>NEW</htmltext>|" /conf/config.xml`
+4. Переписать сгенерированную страницу: `echo "$B64" | base64 -d | sed ... > /var/etc/captiveportal_<zone>.html`
+5. Перезагрузить nginx: `kill -HUP $(cat /var/run/nginx-<zone>-CaptivePortal.pid)`
 
 ### 🔴 6. Сброс pf-правил
 
