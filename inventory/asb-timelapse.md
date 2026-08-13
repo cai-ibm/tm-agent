@@ -88,6 +88,17 @@ confidence: high
 - Шара `[camera]` → `/var/lib/motioneye`
 - Симлинк `/home/cai/camera_share` → `/var/lib/motioneye/Camera1`
 
+## SMB — asb-fs1 (Media/Timelapse/K1)
+
+- **Сервер:** asb-fs1.ca-ibm.org (192.168.40.5), шара `Media`
+- **Путь:** `//asb-fs1.ca-ibm.org/Media` → `/mnt/asb-fs1-media`
+- **Целевая папка снимков:** `/mnt/asb-fs1-media/Timelapse/K1`
+- **Учётка:** `cai\hermes` / Superp@ss2020hermes
+- **Credentials:** `/root/.smb-asb-fs1` (chmod 600)
+- **Fstab:** `//asb-fs1.ca-ibm.org/Media /mnt/asb-fs1-media cifs credentials=/root/.smb-asb-fs1,vers=3.0,iocharset=utf8,nofail,uid=1000,gid=1000 0 0`
+- **Монтирование:** 2026-08-07, запись проверена (WRITE OK)
+- **Пакеты:** установлены `cifs-utils`, `smbclient`
+
 ## VEEAM
 
 - Сервисы: deployment, environment, immurepo, transport

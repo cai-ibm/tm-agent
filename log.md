@@ -32,3 +32,12 @@
 
 - Создана `inventory/asb-timelapse.md` — полная инвентаризация: хост, сеть, службы, порты, motionEye/камеры, timelapse-cron, SMB, Veeam
 - Обновлён `index.md` (добавлена ссылка в Инвентаризация)
+
+## [2026-08-07] smb | Монтирование asb-fs1 Media/Timelapse/K1 на asb-timelapse
+
+- Установлены `cifs-utils`, `smbclient`
+- Смонтирована шара `//asb-fs1.ca-ibm.org/Media` → `/mnt/asb-fs1-media` (учётка `cai\hermes`)
+- Credentials: `/root/.smb-asb-fs1` (chmod 600)
+- Добавлена запись в `/etc/fstab` (nofail, uid/gid=1000), `mount -a` валиден
+- Запись в `Timelapse/K1` проверена (WRITE OK)
+- Обновлена `inventory/asb-timelapse.md`
