@@ -64,6 +64,7 @@
 ## Инвентаризация
 
 - [[inventory/cai-main-b2-tm]] — Инвентаризация сервера cai-main-b2-tm
+- [[inventory/asb-timelapse]] — Инвентаризация timelapse-сервера asb-timelapse
 
 ## Скрипты
 

@@ -27,3 +27,8 @@
 - Пароль `cai` сменён на `Cai$2023#`, хостнейм переименован с `debian`
 - В `/etc/hosts` добавлена `127.0.1.1 asb-timelapse` (убрано предупреждение sudo)
 - Обновлён `index.md` (добавлена ссылка в Entities)
+
+## [2026-08-07] inventory | Инвентаризация asb-timelapse
+
+- Создана `inventory/asb-timelapse.md` — полная инвентаризация: хост, сеть, службы, порты, motionEye/камеры, timelapse-cron, SMB, Veeam
+- Обновлён `index.md` (добавлена ссылка в Инвентаризация)
