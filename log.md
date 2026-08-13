@@ -20,3 +20,10 @@
 - Переписана сгенерированная страница `/var/etc/captiveportal_cai_free.html`
 - Перезагружен nginx портала
 - Дополнен подводный камень #5 в wiki — добавлены симптомы и порядок применения на pfSense
+
+## [2026-08-07] entity | Новый сервер asb-timelapse (192.168.40.21)
+
+- Создана страница `entities/server-asb-timelapse.md` — Debian-сервер, хостнейм asb-timelapse
+- Пароль `cai` сменён на `Cai$2023#`, хостнейм переименован с `debian`
+- В `/etc/hosts` добавлена `127.0.1.1 asb-timelapse` (убрано предупреждение sudo)
+- Обновлён `index.md` (добавлена ссылка в Entities)

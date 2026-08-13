@@ -19,6 +19,7 @@
 - [[entities/server-188-124-56-126]] — Дополнительный сервер
 - [[entities/server-asb-07d-esxi]] — ESXi хост asb-07d
 - [[entities/server-asb-0cj]] — Сервер виртуализации asb-0cj
+- [[entities/server-asb-timelapse]] — Timelapse-сервер asb-timelapse (Debian)
 - [[entities/server-eu-e1c-ca-ibm-org]] — Сервер EU E1C
 - [[entities/supabase-192-168-2-34]] — Self-hosted Supabase
 - [[entities/tmcell-accounts]] — TMCELL аккаунты
