@@ -41,3 +41,10 @@
 - Добавлена запись в `/etc/fstab` (nofail, uid/gid=1000), `mount -a` валиден
 - Запись в `Timelapse/K1` проверена (WRITE OK)
 - Обновлена `inventory/asb-timelapse.md`
+
+## [2026-08-13] fix | Устойчивость монтирования к перезапускам (asb-timelapse)
+
+- В `motioneye.service` добавлена `RequiresMountsFor=/mnt/asb-fs1-media` — монтирование поднимается до motionEye
+- **Pitfall:** при загрузке mount падал `could not resolve address for asb-fs1.ca-ibm.org` (DNS не готов). Заменён hostname на IP `//192.168.40.5/Media` в fstab
+- Проверено двумя перезагрузками: монтирование + motionEye поднимаются автоматически, запись в K1 — WRITE OK
+- Обновлена `inventory/asb-timelapse.md` (раздел «Устойчивость к перезапускам», камера K1)

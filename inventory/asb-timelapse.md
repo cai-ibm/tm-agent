@@ -91,13 +91,26 @@ confidence: high
 ## SMB — asb-fs1 (Media/Timelapse/K1)
 
 - **Сервер:** asb-fs1.ca-ibm.org (192.168.40.5), шара `Media`
-- **Путь:** `//asb-fs1.ca-ibm.org/Media` → `/mnt/asb-fs1-media`
+- **Путь:** `//192.168.40.5/Media` → `/mnt/asb-fs1-media` (в fstab используется **IP**, не hostname — DNS не готов на момент монтирования при загрузке)
 - **Целевая папка снимков:** `/mnt/asb-fs1-media/Timelapse/K1`
 - **Учётка:** `cai\hermes` / Superp@ss2020hermes
 - **Credentials:** `/root/.smb-asb-fs1` (chmod 600)
-- **Fstab:** `//asb-fs1.ca-ibm.org/Media /mnt/asb-fs1-media cifs credentials=/root/.smb-asb-fs1,vers=3.0,iocharset=utf8,nofail,uid=1000,gid=1000 0 0`
-- **Монтирование:** 2026-08-07, запись проверена (WRITE OK)
+- **Fstab:** `//192.168.40.5/Media /mnt/asb-fs1-media cifs credentials=/root/.smb-asb-fs1,vers=3.0,iocharset=utf8,nofail,uid=1000,gid=1000 0 0`
 - **Пакеты:** установлены `cifs-utils`, `smbclient`
+
+## Устойчивость к перезапускам (проверено 2026-08-13)
+
+- В `motioneye.service` добавлена `RequiresMountsFor=/mnt/asb-fs1-media` — systemd поднимает SMB-монтирование **до** motionEye; если шара недоступна, motionEye не стартует
+- **Pitfall:** при загрузке монтирование падало с `could not resolve address for asb-fs1.ca-ibm.org` (DNS не готов). Исправлено заменой hostname на IP `//192.168.40.5/Media` в fstab
+- Проверено двумя перезагрузками: монтирование и motionEye поднимаются автоматически, запись в `Timelapse/K1` — WRITE OK
+
+## Камера K1 (motionEye)
+
+- **camera-1.conf:** RTSP `rtsp://192.168.51.100:554/`, user `admin:745745vF`, 4K 3840×2160, 2 fps
+- **target_dir:** `/mnt/asb-fs1-media/Timelapse/K1` (пишет на SMB-шару)
+- **stream_port:** 9081
+- ⚠️ Камера K1 (192.168.51.100) **недоступна** («No route to host») — так и должно быть на текущий момент; motionEye ретраит подключение
+- Камера B2-Vesu (camera-2.conf): RTSP `192.168.115.76`, target_dir `/var/lib/motioneye/Camera2`, stream 9082
 
 ## VEEAM
 
