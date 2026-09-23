@@ -48,3 +48,14 @@
 - **Pitfall:** при загрузке mount падал `could not resolve address for asb-fs1.ca-ibm.org` (DNS не готов). Заменён hostname на IP `//192.168.40.5/Media` в fstab
 - Проверено двумя перезагрузками: монтирование + motionEye поднимаются автоматически, запись в K1 — WRITE OK
 - Обновлена `inventory/asb-timelapse.md` (раздел «Устойчивость к перезапускам», камера K1)
+
+## [2026-09-23] skill+entity | TMCELL — покупка Internet-200 для К3, питфоллы покупки
+
+- Куплен Internet-200 (200 manat) для К3 через `~/.hermes/scripts/buy_package_oneshot.py` — баланс 201.84 → 1.84 manat, новый пакет 20 Gb до 23.10.2026
+- Скилл `devops/tmcell-check` обновлён: добавлен раздел «Рабочий вариант покупки» + питфоллы для `references/tmcell-purchase.md`
+- **Питфолл 1 (уточнение):** прямой POST с CSRF **работает** (в `tmcell-monitor` было записано, что прямой POST ≠ работает — верно только для POST **без** CSRF)
+- **Питфолл 2:** баланс списывается с задержкой 90–120с после появления карточки пакета; скрипт детектит успех по числу карточек и может показать старый баланс
+- **Питфолл 3:** браузерный путь (`browser_exec`) в этом окружении недоступен — Chrome не установлен, только Playwright-сборка; browser-harness падает с `chrome-not-running`
+- Обновлена `entities/tmcell-k3-64602289.md`
+- Зеркало скилла: `Навыки Hermes/tmcell-check.md`
+
