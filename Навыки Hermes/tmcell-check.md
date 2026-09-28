@@ -20,7 +20,7 @@ triggers:
 ```bash
 python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py          # сводка по всем
 python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К3       # один
-python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К1,К2    # несколько
+python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К4,К2    # несколько
 ```
 
 ## Формат вывода (один аккаунт)
@@ -53,7 +53,7 @@ python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К1,К2    
 
 | Имя | Телефон |
 |-----|---------|
-| К1 | 62057470 |
+| К4 | 62057470 |
 | Дамба | 63275073 |
 | К2 | 63886456 |
 | К3 | 64602289 |

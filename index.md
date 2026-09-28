@@ -24,6 +24,7 @@
 - [[entities/supabase-192-168-2-34]] — Self-hosted Supabase
 - [[entities/tmcell-accounts]] — TMCELL аккаунты
 - [[entities/tmcell-k3-64602289]] — TMCELL К3 (64602289)
+- [[entities/tmcell-damba-63275073]] — TMCELL Дамба (63275073)
 - [[entities/twenty-crm]] — Twenty CRM на Coolify
 
 ## Concepts
