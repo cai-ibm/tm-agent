@@ -19,6 +19,7 @@
 - [[entities/server-188-124-56-126]] — Дополнительный сервер
 - [[entities/server-asb-07d-esxi]] — ESXi хост asb-07d
 - [[entities/server-asb-0cj]] — Сервер виртуализации asb-0cj
+- [[entities/server-asb-dc2]] — Контроллер домена ASB-DC2 (192.168.40.2): AD DS/DNS/GC + резерв принт-сервера
 - [[entities/server-asb-timelapse]] — Timelapse-сервер asb-timelapse (Debian)
 - [[entities/192-168-20-253-asb-prtsrv]] — Принт-сервер ASB-PRTSRV (192.168.20.253): 66 очередей печати
 - [[entities/asb-timelapse-cloud-stream]] — Поток с камеры Uniview через EZCloud: почему серверу недоступен

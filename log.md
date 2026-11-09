@@ -128,3 +128,18 @@
 - 12 очередей (все Canon) не отвечали ни по ICMP, ни по 80/515/9100 — выключены/оторваны; 54 отвечают
 - Журнал PrintService/Operational выключен → истории печати нет; RDP выключен при слушающем 3389
 - Создана [[entities/192-168-20-253-asb-prtsrv]], добавлена в index.md
+
+## [2026-11-09] admin | DC2: принт-сервер + резерв, имя printer.server, GPO часового пояса UTC+5
+
+- asb-dc2 (192.168.40.2): роль Print-Server установлена, хардненинг (`RpcAuthnLevelPrivacyEnabled=1`,
+  `RestrictDriverInstallationToAdministrators=1`)
+- Репликация конфигурации печати prtsrv → dc2 через printbrm: задачи `PrintReplica-Export` (03:00) и
+  `PrintReplica-Import` (03:20), шара `PrintReplica$` только для `ASB-PRTSRV$`; проверено — 67 очередей,
+  0 расхождений по IP/порту/драйверу, SDDL совпадает, повторный импорт дублей не создаёт
+- `printer.server` остаётся на asb-prtsrv; на dc2 зарегистрирован SPN `cifs/printer.server`,
+  `DisableStrictNameChecking=1`, `OptionalNames=printer.server`; переключение — `switch-printer-server.ps1`
+- Найдено: в домене уже есть enforced-политика «Политика синхронизации времени для контроллера домена»
+  (NoOverride, `time.windows.com,0x9`, poll 1024) — она перекрывает NTP-настройки уровня OU
+- Создана GPO `tm-Часовой_пояс_UTC+5_DC` (Enforced) на `OU=TM,OU=Domain Controllers`: TimeZoneKeyName
+  = West Asia Standard Time + NTP-сервер включён. Проверено: ASB-DC2 и GC1 → UTC+5, GC-EU (OU=EU) — UTC+3 без изменений
+- Создана страница [[entities/server-asb-dc2]]; в [[entities/192-168-20-253-asb-prtsrv]] — источник реплики
