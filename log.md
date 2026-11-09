@@ -98,4 +98,33 @@
 - Карточка пакета появилась за 0 с, списание подтвердилось через ~120 с — паттерн задержки из питфолла подтвердился третий раз (К3, Дамба, Сарыбаев)
 - Побочно: этот кейс стал триггером для доработки алертов — при пополнении 59.07 → 209.07 уведомление не пришло (см. запись выше)
 
+## [2026-10-23] research | Поток с камеры через облако EZCloud — проверено, серверу недоступен
 
+- Принят хендофф `asb-timelapse`: задача забирать поток камеры Uniview через облако `ulygayasec.com.tm`
+- Проверено с живой сессией аккаунта `alexromanov4423@gmail.com`: все `/openapi/live/**` и `/openapi/cdn/**` → **503**
+  (requestId 1f74d268, 63b19fc8, 93aa69e, cbf64ab, 7abca8d7, 765350c6), включая аккаунт-уровневые ручки;
+  `capacity/get` → `supportLive:0`, `supportCdn:1`; `record/time/query` → `recordList:[]`;
+  `media/record/hls/get` → `m3u8:null`; `cloud/storage/device/get` → `configList:[]`
+- Найдено, как облако отдаёт видео: только клиентскому P2P — `/private/web/device/access/url/get` выдаёт
+  `http://localhost:9999/?si=95.85.125.157&pt=…&sk=…` (пропуск Windows-плагину EZCloud_P2P 1.21.0006),
+  серверного URL/HLS/RTSP не существует
+- Попытка обойти через Android: на asb-timelapse (Debian 12) `CONFIG_ANDROID_BINDERFS` не включён и KVM нет — отказ;
+  на tm-host4 подняты Waydroid 1.6.2 (SurfaceFlinger `output buffer not gpu writeable`) и redroid 11
+  (Android 11 загрузился, ARM-трансляция есть). APK EZLive CIS ARM-only: arm64 → `SIGILL` в `libndk_translation.so`,
+  arm32 → `ANR: Input dispatching timed out`. Рабочего состояния нет — вариант закрыт
+- Создана страница [[entities/asb-timelapse-cloud-stream]]; стек MediaMTX на asb-timelapse не менялся, следы
+  попыток (waydroid/redroid/docker, образы, каталоги) вычищены с tm-host4
+- Дальше: тикет провайдеру (live/CDN + appKey/appSecret), либо Windows-клиент с P2P, либо пуш из сети камеры
+
+
+
+## [2026-11-09] ingest | Принт-сервер asb-prtsrv — живой инвентарь через WinRM
+
+- Запроса в вики не было: `asb-prtsrv` не упоминался ни в одной странице, ни в git-истории
+- Собран живой инвентарь по WinRM (`cai\hermes`, ntlm, 5985): Windows Server 2022 (10.0.20348),
+  ВМ VMware, 8 GB RAM, C: 39,2 GB (16 свободно), домен CAI, роль Print-Server, spooler Running
+- 66 общих очередей (58 × RAW 9100, 8 × LPR 515), устройства в 192.168.20.0/24; в AD не публикуются
+  (`Published=False`), 12 драйверов (Canon UFR II ×2, HP M227/M478f, KM Universal PCL ×2)
+- 12 очередей (все Canon) не отвечали ни по ICMP, ни по 80/515/9100 — выключены/оторваны; 54 отвечают
+- Журнал PrintService/Operational выключен → истории печати нет; RDP выключен при слушающем 3389
+- Создана [[entities/192-168-20-253-asb-prtsrv]], добавлена в index.md

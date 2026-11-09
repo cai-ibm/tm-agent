@@ -20,6 +20,8 @@
 - [[entities/server-asb-07d-esxi]] — ESXi хост asb-07d
 - [[entities/server-asb-0cj]] — Сервер виртуализации asb-0cj
 - [[entities/server-asb-timelapse]] — Timelapse-сервер asb-timelapse (Debian)
+- [[entities/192-168-20-253-asb-prtsrv]] — Принт-сервер ASB-PRTSRV (192.168.20.253): 66 очередей печати
+- [[entities/asb-timelapse-cloud-stream]] — Поток с камеры Uniview через EZCloud: почему серверу недоступен
 - [[entities/server-eu-e1c-ca-ibm-org]] — Сервер EU E1C
 - [[entities/supabase-192-168-2-34]] — Self-hosted Supabase
 - [[entities/tmcell-accounts]] — TMCELL аккаунты
