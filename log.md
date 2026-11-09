@@ -143,3 +143,13 @@
 - Создана GPO `tm-Часовой_пояс_UTC+5_DC` (Enforced) на `OU=TM,OU=Domain Controllers`: TimeZoneKeyName
   = West Asia Standard Time + NTP-сервер включён. Проверено: ASB-DC2 и GC1 → UTC+5, GC-EU (OU=EU) — UTC+3 без изменений
 - Создана страница [[entities/server-asb-dc2]]; в [[entities/192-168-20-253-asb-prtsrv]] — источник реплики
+
+## [2026-11-09] admin | EU: GPO часового пояса UTC+1 (Vienna) для контроллера домена
+
+- Создана GPO `tm-Часовой_пояс_UTC+1_EU` (Id 72747856-284e-461a-a159-9b7f429a7a58), линк на
+  `OU=EU,OU=Domain Controllers` с Enforced: `TimeZoneKeyName = W. Europe Standard Time`
+  (UTC+01:00 Amsterdam/Berlin/Vienna, DST автоматически) + `NTP-сервер Enabled=1`
+- GC-EU (192.168.2.2): было `Russian Standard Time` (UTC+3) → стало UTC+1, `tzutil` применён сразу;
+  политика в gpresult видна, NTP-синхронизация — от enforced-политики уровня Domain Controllers
+  (`time.windows.com,0x9`), последняя успешная синхронизация 09.11.2026 13:30
+- Расклад по DC: ASB-DC2 и GC1 — UTC+5 (TM), GC-EU — UTC+1 (EU). NTP-политика одна на весь домен
