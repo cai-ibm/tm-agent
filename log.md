@@ -178,3 +178,15 @@
 - Питфолл: при ручной чистке легаси-ветки `SYSTEM\...\W32Time` (удаление NtpClient-значений) служба W32Time перестала стартовать
   (System Event 7023) — лечится `w32tm /register` + запуск службы; после этого `gpupdate /force` возвращает настройки из GPO
 - Межсайтовый интервал репликации DEFAULTIPSITELINK оставлен **15 мин** (было 180) — полезно для домена с двумя сайтами
+
+## [2026-11-10] fix | printer.server не отвечал — конфликт SPN, не Pi-hole
+
+- Симптом: клиенты не открывают `\\printer.server\...`, ошибка 1396 «Указано неверное имя целевой учетной записи»
+- DNS проверен и **в порядке**: Pi-hole 192.168.40.28 и .44 отдают `printer.server → asb-prtsrv.ca-ibm.org → 192.168.20.253` (NOERROR),
+  то же у GC1; клиенты резолвят 192.168.20.253
+- Причина: SPN `cifs/printer.server` был зарегистрирован на **ASB-DC2** (готовили резервный принт-сервер), а CNAME указывает
+  на asb-prtsrv — Kerberos выдавал тикет на DC2, SMB на prtsrv его отвергал
+- Исправление: SPN снят с ASB-DC2, зарегистрирован на ASB-PRTSRV; на prtsrv `LanmanServer\Parameters`:
+  `DisableStrictNameChecking=1`, `OptionalNames=printer.server` (+ рестарт LanmanServer); репликация домена форсирована
+- Проверено с PRTG (192.168.40.29) и ASB-DC2: `net use \\printer.server\IPC$` — успешно, `\\printer.server\print$` — доступен
+- ВАЖНО при будущем переключении CNAME на DC2: SPN `cifs/printer.server` надо переносить на ASB-DC2, иначе повторится та же ошибка 1396

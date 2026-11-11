@@ -36,7 +36,9 @@ SDDL-права очередей совпадают. Источник истин
 Шара `PrintReplica$` на dc2: Change только для `CAI\ASB-PRTSRV$` (NTFS Modify по SID).
 
 **Имя `printer.server`:** CNAME в зоне `server` → сейчас указывает на asb-prtsrv. Для приёма этого имени на dc2:
-SPN `cifs/printer.server` на `ASB-DC2`, `LanmanServer\Parameters\DisableStrictNameChecking=1`, `OptionalNames=printer.server`.
+`LanmanServer\Parameters\DisableStrictNameChecking=1`, `OptionalNames=printer.server` уже прописаны.
+**SPN `cifs/printer.server` сейчас принадлежит ASB-PRTSRV** (на кого указывает CNAME, у того и SPN) — при переключении
+CNAME на dc2 SPN надо перенести (`setspn -D ... ASB-PRTSRV` + `setspn -S ... ASB-DC2`), иначе клиенты получат ошибку 1396.
 Переключение — `C:\PrintReplica\switch-printer-server.ps1 -Target dc2` (обратно `-Target prtsrv`).
 Клиентский TTL DNS — 285 c, поэтому переключение «доезжает» за ~5 минут.
 

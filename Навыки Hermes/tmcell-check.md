@@ -19,14 +19,14 @@ triggers:
 
 ```bash
 python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py          # сводка по всем
-python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К3       # один
+python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py КОС300       # один
 python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К4,К2    # несколько
 ```
 
 ## Формат вывода (один аккаунт)
 
 ```
-📊 **К3** (64602289)
+📊 **КОС300** (64602289)
 
 ▫️ Тариф: Sada
 ▫️ Баланс: 1.84 manat
@@ -54,19 +54,19 @@ python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К4,К2    
 | Имя | Телефон |
 |-----|---------|
 | К4 | 62057470 |
-| Дамба | 63275073 |
+| К3 | 63275073 |
 | К2 | 63886456 |
-| К3 | 64602289 |
+| КОС300 | 64602289 |
 | Мишка | 65193617 |
 | ВВП | 61424509 |
 | Сарыбаев | 62068923 |
 
 ## Покупка пакетов — рабочий способ
 
-**`~/.hermes/scripts/buy_package_oneshot.py`** — прямые POST через `requests` с CSRF. Проверено 23.09.2026 на К3 (Internet-200, списано 200 manat).
+**`~/.hermes/scripts/buy_package_oneshot.py`** — прямые POST через `requests` с CSRF. Проверено 23.09.2026 на КОС300 (Internet-200, списано 200 manat).
 
 ```bash
-/usr/bin/python3 ~/.hermes/scripts/buy_package_oneshot.py --name К3 --package Internet-200
+/usr/bin/python3 ~/.hermes/scripts/buy_package_oneshot.py --name КОС300 --package Internet-200
 ```
 
 Порядок: GET `/` → CSRF → `sleep(1)` → POST login → GET `?internet_bukja` → POST `packetId=<id>&int_paket_al=ok` + CSRF → поллинг баланса.
