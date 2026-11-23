@@ -190,3 +190,12 @@
   `DisableStrictNameChecking=1`, `OptionalNames=printer.server` (+ рестарт LanmanServer); репликация домена форсирована
 - Проверено с PRTG (192.168.40.29) и ASB-DC2: `net use \\printer.server\IPC$` — успешно, `\\printer.server\print$` — доступен
 - ВАЖНО при будущем переключении CNAME на DC2: SPN `cifs/printer.server` надо переносить на ASB-DC2, иначе повторится та же ошибка 1396
+
+## [2026-11-23] inventory | Новый сервер ASB-1XS (DL380 Gen9, iLO 192.168.40.107)
+
+- Найден по имени iLO: `asb-1xs.ca-ibm.org` → 192.168.40.107 (static), в DNS зоны ca-ibm.org записи нет (NXDOMAIN)
+- HPE ProLiant DL380 Gen9 823843-B21, S/N CZ360821XS, 2× Xeon E5-2643 v4, 32 GiB (2×16 GB, слоты DIMM 9 обоих CPU)
+- iLO 4 v2.80 + Advanced Perpetual; сервер **выключен**, Smart Array в слоте 3 не сконфигурирован (1785), диски не обнаружены
+- Ключевые дефекты: ошибки POST 228 (порядок DIMM 8/9 на обоих процессорах), DIMM 9 не HPE SmartMemory,
+  Input Power Loss по обоим БП (04.11.2026), часы iLO сброшены в 1970 (батарея CMOS), BIOS P89 2.30 от 2016 в Legacy-режиме
+- Страница: [[entities/server-asb-1xs]]; список работ перед вводом — в разделе «Что сделать»

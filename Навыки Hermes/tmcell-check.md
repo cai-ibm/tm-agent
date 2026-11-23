@@ -60,6 +60,7 @@ python3 ~/.hermes/skills/devops/tmcell-check/scripts/tmcell_check.py К4,К2    
 | Мишка | 65193617 |
 | ВВП | 61424509 |
 | Сарыбаев | 62068923 |
+| К9 | 61252886 |
 
 ## Покупка пакетов — рабочий способ
 
