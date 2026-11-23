@@ -59,24 +59,29 @@ iLO: GW 192.168.40.254, DNS 192.168.40.28 / 40.66.162.225 / 40.66.162.223, до�
 
 | Параметр | Значение |
 |---|---|
-| Версия | iLO 4 v2.80 (26.09.2023 прошивалась 2.82, 02.10.2023 откат на 2.80) |
+| Версия | **iLO 4 v2.82** — прошит 23.11.2026 (было 2.80; пакет CP053894, `ilo4_282.bin`) |
 | Лицензия | iLO Advanced, Perpetual (ключ в iLO, здесь не приводится) |
+| Имя | `ILO-ASB-1XS` / `ILO-ASB-1XS.ca-ibm.org` (с 23.11.2026; подчёркивание iLO 4 отвергает) |
 | Сервисы | HTTP 80, HTTPS 443, SSH 22, SNMP 161 (trap 162), Virtual Media 17988, Remote Console 17990 |
 | Отключено | IPMI 623, Remote Syslog, AlertMail (SMTP не задан) |
 | XML API | `XMLResponseEnabled = true`, AES/3DES — Enforce |
-| Время | `1970-01-01T00:08Z`, TZ Atlantic/Reykjavik (GMT+0), NTP-серверы пусты, `PropagateTimeToHost = false` |
+| Время | NTP `192.168.40.2` + `192.168.30.9`, TZ Asia/Ashgabat (+05), `PropagateTimeToHost = Yes` (с 23.11.2026) |
 
-Часы iLO сброшены в epoch — косвенный признак умершей батареи CMOS/RTC на системной плате (iLO берёт время у хоста).
+Часы iLO были сброшены в epoch — после настройки NTP время корректно; сам сброс — признак умершей
+батареи CMOS/RTC на системной плате (iLO берёт время у хоста).
 
 ## Накопители
 
-- Контроллер **Smart Array в PCIe-слоте 3** (`PciSlot3Enable = Enabled`); точную модель (P440/P840) iLO 4 не отдаёт —
-  видно только как «Slot 3 Drive Array».
-- `1785-Slot 3 Drive Array Not Configured` — логические тома не созданы. Записи в IML: 01.04.2025, 04.11.2026 10:06,
-  **23.11.2026 10:21 и 11:00** (два последних POST — сегодня).
-- В журнале есть `No Drives Detected. Action: Reseat or add drives` — как минимум на одном включении контроллер
-  не увидел ни одного диска (корзины/бэкплейн/кабели).
-- `Smart Storage Battery pre-failure` (апрель 2020) — батарея кэша контроллера, скорее всего, требует замены.
+- Контроллер: **HP Smart Array P840** в PCIe-слоте 3 (определён 23.11.2026 через System Utilities → System Configuration;
+  iLO 4 модель не отдаёт, видно только как «Slot 3 Drive Array»).
+- Диски: **2× 1 TB SATA SSD** — Port 2I, Box 4, Bay 1 и Bay 2 (оба были Unassigned).
+- **23.11.2026 создан Logical Drive 1 = RAID 1**, 953.84 GiB (1024.18 GB), 100 % ёмкости массива,
+  «HP SSD Smart Path is enabled». Создано через SSA (iLO Remote Console → F9 → System Configuration →
+  Slot 3: Smart Array P840 → Launch HPSSA).
+- До этого: `1785-Slot 3 Drive Array Not Configured` на каждом POST (01.04.2025, 04.11.2026, 23.11.2026 10:21 и 11:00);
+  один раз было `No Drives Detected` — тогда диски ещё не были установлены.
+- `Smart Storage Battery pre-failure` (апрель 2020) — батарея кэша контроллера; сейчас в POST пункт
+  «Smart Storage Battery» отображается, состояние требует отдельной проверки (SmartCache для SSD не критичен).
 
 ## BIOS
 
@@ -142,8 +147,26 @@ BIOS на Gen9 не прошивается через iLO (нет UpdateService 
 При сборке: проверить БП и кабели, заменить батарею CMOS, поставить память по таблице выше,
 убедиться в наличии корзин/дисков, проверить батарею кэша Smart Array.
 
-## Что сделать перед вводом в эксплуатацию
+## Выполнено 23.11.2026 (удалённо, через iLO)
 
+- **iLO 2.80 → 2.82**: файл `ilo4_282.bin` (CP053894) раздан по HTTP и залит через SSH-CLI
+  `load /map1/firmware1 -source http://…/ilo4_282.bin`. Раздатчик обязан отвечать `206 Partial Content`
+  на Range-запросы — простой `python -m http.server` iLO отвергает («Unable to retrieve a valid image»).
+- **Имя**: `ILO-ASB-1XS.ca-ibm.org` (подчёркивание, как у `ILO_ASB-07D`, iLO 4 не принимает:
+  «DNS_NAME must contain only letters, numbers and non-hanging hyphens»).
+- **NTP/время**: `192.168.40.2`, `192.168.30.9`; TZ `Asia/Ashgabat`; `PropagateTimeToHost = Yes`;
+  после синхронизации время верное (сверено с локальным UTC).
+- **BIOS (pending, применится при первом старте)**: `ProcHyperthreading = Enabled`,
+  `PostF1Prompt = Disabled`, `ServerName = ASB-1XS`, `TimeZone = UtcP5`.
+  `BootMode` оставлен `LegacyBios` — меняется после решения по ОС.
+- **RAID 1 создан** на Smart Array P840 (2× 1 TB SATA SSD → Logical Drive 1, 953.84 GiB) через
+  Remote Console: F9 → System Configuration → Slot 3 → Launch HPSSA → Configure → Create Array → RAID 1.
+  После перезагрузки POST проходит без ошибки 1785.
+
+Осталось (в работе): DNS-запись iLO/хоста, смена пароля и отключение HTTP, PRTG/AlertMail,
+BIOS P89 3.40 через SPP, замена батареи CMOS, память по таблице DIMM.
+
+## Что сделать перед вводом в эксплуатацию
 1. **Питание:** проверить кабели/PDU обоих БП (iLO видит оба как Absent, в журнале Input Power Loss 04.11.2026,
    `1624` по БП 1). Без этого сервер не поднимется под нагрузкой.
 2. **Батарея CMOS/RTC** — заменить (часы iLO в 1970, BIOS TimeZone = Utc0).
