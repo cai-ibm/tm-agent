@@ -162,6 +162,13 @@ BIOS на Gen9 не прошивается через iLO (нет UpdateService 
 - **RAID 1 создан** на Smart Array P840 (2× 1 TB SATA SSD → Logical Drive 1, 953.84 GiB) через
   Remote Console: F9 → System Configuration → Slot 3 → Launch HPSSA → Configure → Create Array → RAID 1.
   После перезагрузки POST проходит без ошибки 1785.
+- **Network Boot отключён** (`NicBoot1..5 = Disabled`, `NetworkBootRetry = Disabled`) — машина больше не
+  висит в PXE-цикле, пробует HDD и пишет `No bootable devices detected` (ОС ещё нет).
+- **Сеть:** FLR-карта воткнута в CRS354 `SW.B2.Mod3.Server.CRS354.HG909V1GC61` (mgmt 192.168.100.6),
+  порт **qsfpplus2-1**: 40G, DAC Molex 1110402304 3 м, untagged PVID 1 — тот же VLAN 1, что у iLO (ether16).
+  На свиче выучен MAC **48:0F:CF:F2:2A:E2** — это второй порт карты, а PXE ходил с первого (`…:E1`),
+  откуда и «Link:down». Побочный эффект: каждый retry FlexBoot сбрасывал PHY, и линк 40G флапал
+  каждые ~30 с (`link-downs` до 58). После отключения Network Boot флап прекратился — линк стабилен.
 
 Осталось (в работе): DNS-запись iLO/хоста, смена пароля и отключение HTTP, PRTG/AlertMail,
 BIOS P89 3.40 через SPP, замена батареи CMOS, память по таблице DIMM.
