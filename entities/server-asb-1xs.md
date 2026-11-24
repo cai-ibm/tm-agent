@@ -1,7 +1,7 @@
 ---
 title: ASB-1XS — HPE ProLiant DL380 Gen9 (192.168.40.107)
 created: 2026-11-23
-updated: 2026-11-23
+updated: 2026-11-24
 type: entity
 tags: [server, hardware, hpe, ilo, inventory, 40-net]
 sources: [ilo-redfish-api, ilo-iml]
@@ -33,8 +33,8 @@ confidence: high
 | Параметр | Значение |
 |---|---|
 | CPU | 2× Intel Xeon E5-2643 v4 (6 ядер / 12 потоков, 3.4 ГГц, турбо до 3.7, TDP 135 Вт) |
-| Hyper-Threading | **Disabled** в BIOS |
-| RAM | 32 GiB: 2× 16 GB DDR4-2133 RDIMM (2Rx4, ECC multi-bit), слоты `PROC 1 DIMM 9` и `PROC 2 DIMM 9` |
+| Hyper-Threading | **Enabled** (24 потока, `nproc = 24`) |
+| RAM | **128 GiB**: 4× 32 GB DDR4-2400 2Rx4 (сняты с asb-07d), слоты P1/P2 DIMM 9 и 12; все четыре — не HPE SmartMemory |
 | Прочее | AMP (Advanced Memory Protection) — `None`, режим не настроен |
 
 Проблемы из POST 04.11.2026:
@@ -87,8 +87,8 @@ iLO: GW 192.168.40.254, DNS 192.168.40.28 / 40.66.162.225 / 40.66.162.223, до�
 
 | Параметр | Значение |
 |---|---|
-| Версия | **P89 v2.30 от 13.09.2016** (последняя правка настроек — 04.11.2026 10:06 UTC) |
-| Режим загрузки | **Legacy BIOS** (UEFI Optimized Boot — Disabled) |
+| Версия | **P89 v3.40 от 29.08.2024** — прошит 24.11.2026 из Linux (было 2.30 от 13.09.2016) |
+| Режим загрузки | **UEFI** (с 24.11.2026, при установке PVE) |
 | Secure Boot | Disabled, TPM 1.2 присутствует и выключен |
 | Питание | Power Regulator = Static High Performance, Power Profile = Custom, Thermal = Optimal Cooling |
 | Автозапуск | `AutoPowerOn = RestoreLastState`, `PostF1Prompt = Delayed20Sec` |
@@ -188,3 +188,41 @@ BIOS P89 3.40 через SPP, замена батареи CMOS, память п�
 7. **DNS:** добавить `A`-запись `asb-1xs` → 192.168.40.107 в зоне ca-ibm.org (сейчас NXDOMAIN), либо включить DDNS.
 8. **iLO-безопасность:** сменить пароль Administrator, отключить HTTP (оставить HTTPS), решить по SNMP (161 открыт),
    настроить AlertMail/Remote Syslog на PRTG/почту.
+
+## 24.11.2026 — установка Proxmox VE 9.2 и прошивка BIOS 3.40
+
+Итог дня: машина введена в строй — PVE 9.2.2, `192.168.40.8/24`, **штатная загрузка без recovery**.
+
+**Что было не так (диагноз)**
+- BIOS 2.30 не содержал микрокода новее `0xb000020`, который требует ядро: `TSC_DEADLINE disabled due to Errata`,
+  `BIOS has corrupted hw-PMU resources (MSR 38d is 330)`, и MCE-шторм при загрузке ОС
+  (банки `0x03/0x04/0x07/0x12/0x13`, оба сокета, 18 записей в IML за один момент).
+- Рабочий обход был `dis_ucode_ldr` в cmdline: ОС грузилась, микрокод не применялся (`0xb00001e`), машина жила,
+  но с отключёнными митигациями. Любая загрузка **без** этого флага падала.
+- Официальный changelog HPE это подтверждает: 2.60 («uncorrectable QPI errors… system would become unresponsive
+  during boot with no indication»), 2.64 («unexpected reset/shutdown with no errors logged… Xeon 2600 v4»),
+  2.74 («machine check… only impacts Xeon v4»), 2.90 (микрокод `0x0B00003E` для CPUID 406F1).
+
+**Как прошили (без iLO-UpdateService, без SPP, без флешки)**
+1. Из каталога HPE (после регистрации в Support Center) взят **RPM-компонент**
+   `firmware-system-p89-3.40_2024_08_29-1.1.i386.rpm` (SHA-256 `509836923ac32c218a91fee9135a4fb1e69c27bf317e4d0573a5adae40272373`)
+   — публичный путь `downloads.hpe.com/pub/softlib2/software1/sc-linux-uefi-sys/...`, отдаётся без логина.
+2. RPM распакован вручную (RPM → cpio+gzip, `tail -c +<offset> | gzip -dc | cpio -idm`), внутри:
+   `P89_3.40_08_29_2024.signed.flash` (тот же SHA-256 `907f09f8…`), обёртка `setup` и бинарь `.setup`
+   (ELF 32-bit **статический** — на amd64 работает без i386-библиотек).
+3. Архив залит на сервер по SSH, запуск через `systemd-run` (чтобы не зависеть от SSH-сессии):
+   `printf "y\n\ny\n" | ./setup` → `Flash in progress do not interrupt` → ~4 мин → авторебут.
+
+**Результат (проверено)**
+- `dmidecode -s bios-version/date` → **P89, 08/29/2024**; IML: `Firmware flashed (System BIOS - P89 v3.40)`.
+- `/proc/cmdline` → `ro quiet` — **без** `single` и `dis_ucode_ldr`; загрузка штатная, `systemctl --failed` пусто.
+- `microcode: Current revision: 0x0b000041` (пакет Debian 3.20251111), `TSC_DEADLINE` больше не ругается.
+- PVE 9.2.2, ядро `7.0.2-6-pve`, `vmbr0 = 192.168.40.8/24`, VG `pve`: root 96G, swap 8G, data 816G (LVM-thin на HW RAID1).
+- Новых `1719`/MCE после прошивки в IML **нет**.
+
+**Что осталось**
+- Контроллер P840: прошить 6.88 (компонент HPE), пересадить карту/проверить батарею кэша — `1719 lock up 0x12`
+  фиксировался трижды за 24.11 до прошивки BIOS, дальше наблюдать.
+- Вернуть процессоры **E5-2690 v4** (2×14C) вместо 2643 v4 — микрокод от модели не зависит, ядра лишними не будут.
+- Репозитории PVE (отключить `pve-enterprise`, включить `pve-no-subscription`), timezone `Asia/Yekaterinburg` (UTC+5),
+  DNS-запись `asb-1xs` в зоне ca-ibm.org, PRTG/SNMP, заметка про VM-плейсмент.
