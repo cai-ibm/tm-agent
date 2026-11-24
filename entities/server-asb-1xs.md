@@ -237,3 +237,11 @@ BIOS P89 3.40 через SPP, замена батареи CMOS, память п�
 - Время: `Asia/Yekaterinburg` (+05), chrony синхронизирован с `192.168.40.2` (`System clock synchronized: yes`).
 - DNS: `asb-1xs.server` и `asb-1xs` → `192.168.40.8` (записи уже есть, резолв проверен).
 - PRTG — Роман заводит сам.
+
+**Стресс-тест платформы (25.11.2026, 00:17–00:28)**
+`stress-ng 0.19.02` через `systemd-run` (юнит `stresstest`, лог в journal), три фазы подряд:
+A) `--cpu 0 --cpu-method matrixprod` 4 мин; B) `--vm 4 --vm-bytes 24G --vm-method all` 4 мин;
+C) `--cpu 0 --vm 2 --vm-bytes 12G` 3 мин.
+Результат: `passed: 26 (cpu 24, vm 2)`, **`failed: 0`**, 3 ч 02 мин CPU-time, память до 96 ГБ.
+Температуры под нагрузкой: ядра **45–54 °C**, VR P1/P2 45 °C, Chipset 36 °C, PCI 3 (P840) 60 °C, вход 19 °C — без троттлинга.
+IML после теста — **по-прежнему 27 записей**, новых MCE и `1719` нет; `dmesg` без `hpsa reset/lockup` и ошибок ФС.
