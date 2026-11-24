@@ -229,3 +229,11 @@ BIOS P89 3.40 через SPP, замена батареи CMOS, память п�
 - Вернуть процессоры **E5-2690 v4** (2×14C) вместо 2643 v4 — микрокод от модели не зависит, ядра лишними не будут.
 - Репозитории PVE (отключить `pve-enterprise`, включить `pve-no-subscription`), timezone `Asia/Yekaterinburg` (UTC+5),
   DNS-запись `asb-1xs` в зоне ca-ibm.org, PRTG/SNMP, заметка про VM-плейсмент.
+
+**Настройка ОС (25.11.2026, ночь)**
+- Репозитории: `pve-enterprise.sources` и `ceph.sources` → отключены (`.disabled`), подключён `pve-no-subscription`
+  (`http://download.proxmox.com/debian/pve trixie`). `apt full-upgrade` — 225 пакетов, `pve-manager 9.2.2 → 9.2.32`,
+  установлено ядро **7.0.14-30-pve** (активируется после ребута; сейчас работает 7.0.2-6-pve).
+- Время: `Asia/Yekaterinburg` (+05), chrony синхронизирован с `192.168.40.2` (`System clock synchronized: yes`).
+- DNS: `asb-1xs.server` и `asb-1xs` → `192.168.40.8` (записи уже есть, резолв проверен).
+- PRTG — Роман заводит сам.
