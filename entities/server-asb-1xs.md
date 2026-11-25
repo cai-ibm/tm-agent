@@ -310,3 +310,25 @@ SSA может помечать как non-HPE. Non-medium error count 5–9 н�
   Бэкап оригинального файла рядом: `proxmoxlib.js.bak-YYYYMMDD`. В браузере нужен hard-reload (Ctrl+Shift+R).
 - `ssacli` поставлен из HPE MCP (`deb [trusted=yes] https://downloads.linux.hpe.com/SDR/repo/mcp/Debian trixie/current non-free`)
   — ключ из репозитория не совпал с подписью, поэтому репозиторий помечен `trusted=yes` (HPE по HTTPS).
+
+### Массив пересобран и инициализирован (26.11.2026, 01:08)
+
+**Что было с bay 8.** Диск `Z1Y35MYF0000C5314544` (bay 8) на инициализации отвалился с шины
+(`Last Failure Reason: Write retries failed`, исчез из инвентаря — 11 дисков вместо 12). При этом
+`Elements in grown defect list = 0`: поверхность цела, копились только `non-medium` (транспортные) ошибки.
+**Aux Power Cycle через iLO** (`POST /redfish/v1/Systems/1/Actions/Oem/Hp/ComputerSystemExt.SystemReset/`
+с `{"ResetType":"AuxCycle"}`; сервер предварительно выключить) поднял диск — вернулись все 12,
+`1I:1:8: OK`. То есть дело было в питании/линке слота, а не в накопителе.
+
+**Инициализация.** LD2 пересоздан с `parityinitializationmethod=rapid`; при rapid HPE держит LD
+**offline для ОС** до конца инициализации (в `dmesg` — `hpsa ... RAID-6 offline`), прогресс ~0.3 %/мин,
+полный цикл 21.83 ТБ — **6 ч 10 мин** (18:58 → 01:08). После завершения: `Parity Initialization Status:
+Initialization Completed`, `Status: OK`, bay 8 всё это время `OK`, non-medium остался **11** (не вырос) —
+подтверждение, что диск и слот живы.
+
+**Итоговая раскладка (пересоздана после пересборки):**
+```
+VG data 21.83 TiB → thin pool "thin" 21.30 TiB (chunk 256 KiB, metadata 8 GiB) → PVE storage data-thin
+                   → lv_s3 2.00 TiB → XFS → /srv/s3 (noatime,discard)  → под MinIO (LXC)
+```
+Резерв: ~0.5 ТБ в VG. Пороги оповещения по тонкому пулу — 75 % / 85 %.
