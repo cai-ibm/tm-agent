@@ -301,3 +301,12 @@ VG data              21.83 TiB  (/dev/sdb)
 одинаковая. Особенность: вендор в SMART — `IBM-A040`, то есть OEM-вариант Seagate от IBM; HPE-прошивок для них нет,
 SSA может помечать как non-HPE. Non-medium error count 5–9 на четырёх дисках — типично для первых часов
 (раскрутка + parity init), но за ним стоит следить: рост = тревожный признак.
+
+## Служебное по PVE
+
+- Окно «No valid subscription» убрано правкой `/usr/share/javascript/proxmox-widget-toolkit/proxmoxlib.js`
+  (обе проверки статуса подписки сведены к `false`). Правка **слетает при обновлении** `proxmox-widget-toolkit`,
+  поэтому сохранён идемпотентный скрипт **`/root/fix-subscription-nag.sh`** — после апгрейда запускать его.
+  Бэкап оригинального файла рядом: `proxmoxlib.js.bak-YYYYMMDD`. В браузере нужен hard-reload (Ctrl+Shift+R).
+- `ssacli` поставлен из HPE MCP (`deb [trusted=yes] https://downloads.linux.hpe.com/SDR/repo/mcp/Debian trixie/current non-free`)
+  — ключ из репозитория не совпал с подписью, поэтому репозиторий помечен `trusted=yes` (HPE по HTTPS).
