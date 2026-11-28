@@ -347,3 +347,16 @@ nic4 + nic5 → bond0 (active-backup, miimon 100, primary nic4) → vmbr0 (192.1
   (40 пакетов, 38 доставлено — потеря ~0.4 с на переключение); после `up` бонда вернулся на `nic4` благодаря
   `bond-primary-reselect always`. Суммарной полосы нет — это чистое резервирование, как и требовалось.
 - Скрипты на хосте: `/root/bond-setup.sh` (с авто-откатом по пингу шлюза), `/root/failover-test.sh`.
+
+## Мониторинг дисков (cron, ежедневно 09:00)
+
+Задача Hermes: **`01fb059b9123`** — «asb-1xs — диски (SMART), изменения», `no_agent`, доставка в
+`telegram:6959133434`, снимок состояния в `~/.hermes/state/asb1xs_disks.json`.
+Скрипт: `~/.hermes/scripts/asb1xs_disk_daily.py` — снимает SMART всех 12 дисков через
+`smartctl -d cciss,N /dev/sda` плюс статусы LD/PD через `ssacli`, сравнивает со снимком и **молчит,
+если изменений нет** (watchdog). Алерты: рост grown defects (любой), non-medium +5 и более, смена health,
+пропажа/появление диска, любой диск не в OK по мнению контроллера. В отчёте всегда строка про LD2
+(статус, parity init, unrecoverable media errors).
+
+**Базовая линия на 28.11.2026:** 12 дисков, LD2 OK, init Completed; проблемные точки для наблюдения —
+`1I:1:8` (Z1Y35MYF…, grown defects 4, был отвал с шины) и `2I:2:1` (Z1Z879KM…, non-medium 29).
